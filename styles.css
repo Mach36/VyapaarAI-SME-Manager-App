@@ -832,6 +832,19 @@ button:active {
   margin-bottom: 28px;
 }
 
+.topbar.copilot-active {
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.topbar-search.hidden-on-copilot {
+  display: none;
+}
+
+.topbar.copilot-active .profile {
+  margin-left: auto;
+}
+
 .search {
   min-height: 46px;
   border-radius: 11px;
@@ -1090,6 +1103,16 @@ input.filter {
   .topbar {
     gap: 10px;
     margin-bottom: 18px;
+  }
+
+  .topbar.copilot-active {
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .topbar.copilot-active .mobile-menu {
+    display: inline-flex;
   }
 
   .hero {

@@ -29,6 +29,10 @@ async function loadPage(id) {
 
 async function goTo(id, updateHistory = true) {
   const nextPage = pageIds.includes(id) ? id : 'home';
+  const isCopilot = nextPage === 'copilot';
+  const topbar = document.querySelector('.topbar');
+  topbar?.classList.toggle('copilot-active', isCopilot);
+  topbar?.querySelector('.topbar-search')?.classList.toggle('hidden-on-copilot', isCopilot);
   document.querySelectorAll('#nav button').forEach(button => {
     const isActive = button.dataset.page === nextPage;
     button.classList.toggle('active', isActive);
