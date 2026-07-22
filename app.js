@@ -140,6 +140,7 @@ document.addEventListener('click', event => {
   if (!button) return;
   if (button.dataset.action === 'pending-payments') showPendingPayments();
   else if (button.dataset.action === 'clear-pending-payments') clearPendingPayments();
+  else if (button.dataset.action === 'export-inventory') openInventoryExport();
   else if (button.dataset.action === 'copilot') goTo('copilot');
   else if (button.dataset.action === 'connect') openConnect();
   else if (button.dataset.action === 'toast') showToast(button.dataset.toast);

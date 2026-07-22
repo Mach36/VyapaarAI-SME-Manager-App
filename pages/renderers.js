@@ -25,7 +25,7 @@
   }
 
   function inventory(data) {
-    const rows = data.products.map(product => { const recommendation = typeof product.recommendation === 'string' ? e(product.recommendation) : `<button class="btn btn-brand" data-action="toast" data-toast="${e(product.recommendation.toast)}">${e(product.recommendation.label)}</button>`; return `<tr><td><strong>${e(product.name)}</strong><br><span class="empty-small">${e(product.sku)}</span></td><td>${e(product.available)}</td><td>${e(product.committed)}</td><td>${pill(product.stockout, product.tone)}</td><td>${e(product.margin)}</td><td>${recommendation}</td></tr>`; }).join('');
+    const rows = data.products.map((product, index) => { const recommendation = typeof product.recommendation === 'string' ? e(product.recommendation) : `<button class="btn btn-brand" data-action="toast" data-toast="${e(product.recommendation.toast)}">${e(product.recommendation.label)}</button>`; return `<tr data-product-index="${index}"><td><strong>${e(product.name)}</strong><br><span class="empty-small">${e(product.sku)}</span></td><td>${e(product.available)}</td><td>${e(product.committed)}</td><td>${pill(product.stockout, product.tone)}</td><td>${e(product.margin)}</td><td>${recommendation}</td></tr>`; }).join('');
     return `<section id="inventory" class="page active">${title(data)}${metrics(data.metrics)}<div class="table-wrap inventory-table-wrap" tabindex="0" aria-label="Scrollable inventory table"><table><thead><tr>${data.columns.map(column => `<th>${e(column)}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>${panels(data.panels)}</section>`;
   }
 

@@ -463,6 +463,23 @@
   .connect-option.selected { border-color:var(--brand); background:#f3f2ff; }
   .modal-footer { display:flex; justify-content:flex-end; gap:10px; margin-top:22px; }
 
+  body.inventory-export-open { overflow: hidden; }
+  .inventory-export-modal { z-index: 35; }
+  .inventory-export-card { width: min(600px, 96vw); }
+  .export-group { border: 0; padding: 0; margin: 22px 0 0; }
+  .export-group legend { font-size: 13px; font-weight: 800; margin-bottom: 10px; }
+  .export-choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .export-choice { display: flex; align-items: flex-start; gap: 9px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
+  .export-choice:has(input:checked) { border-color: var(--brand); background: #f5f4ff; }
+  .export-choice input, .export-options input, .export-field-grid input { accent-color: var(--brand); }
+  .export-choice span { display: grid; gap: 3px; }
+  .export-choice strong { font-size: 13px; }
+  .export-choice small { color: var(--muted); font-size: 11px; }
+  .export-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+  .export-options label, .export-field-grid label { color: #3d4658; font-size: 12px; display: flex; align-items: center; gap: 7px; }
+  .export-field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; padding: 13px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; }
+  .export-error { min-height: 16px; margin: 6px 0 0; color: var(--danger); font-size: 11px; }
+
   .toast {
     position: fixed; right: 24px; bottom:24px;
     background:#11172a; color:white; border-radius:11px; padding:12px 15px;
@@ -488,6 +505,9 @@
       position: fixed; left:-260px; z-index:30; width:244px; transition:.25s;
     }
     .sidebar.open { left:0; }
+    .inventory-export-modal { padding: 0; place-items: end stretch; }
+    .inventory-export-card { width: 100%; max-height: 94dvh; border-radius: 18px 18px 0 0; }
+    .export-options, .export-field-grid { grid-template-columns: 1fr; }
     .main { padding:18px 14px 34px; }
     .mobile-menu { display:inline-flex; }
     .grid-4,.grid-3,.grid-2,.integration-grid { grid-template-columns:1fr; }
