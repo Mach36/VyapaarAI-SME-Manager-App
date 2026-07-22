@@ -1,6 +1,7 @@
 (function () {
   const STATE_KEY = 'vyapaar-lead-state-v1';
   const REVIEW_KEY = 'vyapaar-high-priority-review-v1';
+  const EXPANSION_KEY = 'vyapaar-lead-expansion-v1';
   const terminalStages = new Set(['Won', 'Lost']);
   let initialData;
   let review = null;
@@ -17,6 +18,9 @@
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const read = (key, fallback) => { try { return JSON.parse(sessionStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; } };
   const moneyValue = value => Number(String(value || '').replace(/[^0-9.]/g, '')) * (String(value).includes('L') ? 100000 : 1);
+  const formatPipelineValue = value => value >= 100000
+    ? `₹${(value / 100000).toFixed(2).replace(/\.00$/, '')}L`
+    : `₹${Math.round(value).toLocaleString('en-IN')}`;
 
   function loadLeads() {
     const saved = read(STATE_KEY, null);
@@ -64,11 +68,17 @@
       return { name, count: String(stageLeads.length), leads: stageLeads };
     });
     const waiting = review.queue.length;
-    const metrics = initialData.metrics.map(metric => metric.label === 'Likely to convert'
-      ? { ...metric, value: String(leads.filter(eligible).length) }
-      : metric.label === 'Follow-ups due'
-        ? { ...metric, value: String(leads.filter(lead => eligible(lead) && lead.next).length) }
-        : metric);
+    const activeLeads = leads.filter(lead => !terminalStages.has(lead.stage));
+    const endOfToday = new Date();
+    endOfToday.setHours(23, 59, 59, 999);
+    const followUpsDue = activeLeads.filter(lead => lead.next && lead.followUpAt && new Date(lead.followUpAt) <= endOfToday).length;
+    const metrics = initialData.metrics.map(metric => metric.label === 'Pipeline value'
+      ? { ...metric, value: formatPipelineValue(activeLeads.reduce((sum, lead) => sum + moneyValue(lead.potential), 0)), badge: `${activeLeads.length} active leads` }
+      : metric.label === 'Likely to convert'
+        ? { ...metric, value: String(leads.filter(eligible).length) }
+        : metric.label === 'Follow-ups due'
+          ? { ...metric, value: String(followUpsDue), badge: 'Today & overdue' }
+          : metric);
     return {
       title: 'Lead generation',
       subtitle: 'Leads captured automatically from WhatsApp, Instagram, email and your website.',
@@ -226,6 +236,32 @@
   }
 
   function handleModalInput(event) { if (event.target.id === 'leadLostReason') document.getElementById('leadLostError').textContent = ''; }
+
+  function toggleExpandedLead(button) {
+    const column = button.closest('.lead-column');
+    const selectedItem = button.closest('.lead-list-item');
+    if (!column || !selectedItem) return;
+    const stage = column.dataset.leadStage;
+    const willExpand = button.getAttribute('aria-expanded') !== 'true';
+    column.querySelectorAll('.lead-list-item').forEach(item => {
+      const trigger = item.querySelector('.lead-compact');
+      const details = item.querySelector('.lead-expanded');
+      const expanded = willExpand && item === selectedItem;
+      item.classList.toggle('expanded', expanded);
+      trigger.setAttribute('aria-expanded', String(expanded));
+      details.hidden = !expanded;
+    });
+    const expansion = read(EXPANSION_KEY, {});
+    if (willExpand) expansion[stage] = selectedItem.dataset.leadId;
+    else delete expansion[stage];
+    sessionStorage.setItem(EXPANSION_KEY, JSON.stringify(expansion));
+    if (willExpand) requestAnimationFrame(() => selectedItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' }));
+  }
+
+  document.addEventListener('click', event => {
+    const button = event.target.closest('[data-lead-expand]');
+    if (button) toggleExpandedLead(button);
+  });
 
   document.addEventListener('keydown', event => {
     const modal = document.getElementById('leadReviewModal');

@@ -33,7 +33,20 @@
   }
 
   function leads(data) {
-    const board = data.columns.map(column => `<div class="lead-column"><div class="lead-column-head"><span>${e(column.name)}</span><span>${e(column.count)}</span></div>${column.leads.map(lead => `<div class="lead-card" data-lead-id="${e(lead.id)}"><div class="lead-top"><div><h4>${e(lead.name)}</h4><p>${e(lead.lastInteraction ? `${String(lead.source).split(' · ')[0]} · ${lead.lastInteraction}` : lead.source)}</p></div>${pill(lead.score, lead.tone)}</div><div class="lead-details">${(lead.details || [{label:'Interest',value:lead.interest},{label:['Won','Lost'].includes(lead.stage)?'Value':'Potential',value:lead.potential}]).map(detail => `<div><span>${e(detail.label)}</span><strong>${e(detail.value)}</strong></div>`).join('')}</div>${lead.next ? `<div class="next-action">${e(lead.next)}</div>` : ''}</div>`).join('')}</div>`).join('');
+    let expandedByStage = {};
+    try { expandedByStage = JSON.parse(sessionStorage.getItem('vyapaar-lead-expansion-v1')) || {}; } catch (_) {}
+    const board = data.columns.map(column => {
+      const expandedId = expandedByStage[column.name];
+      const leadItems = column.leads.map(lead => {
+        const expanded = lead.id === expandedId;
+        const score = Number.parseInt(lead.score, 10);
+        const active = !['Won', 'Lost'].includes(lead.stage);
+        const priority = active && score >= 75 ? ['High', 'high'] : active && score >= 60 ? ['Medium', 'medium'] : active ? ['Low', 'low'] : [lead.stage, lead.stage.toLowerCase()];
+        const detailsId = `lead-details-${lead.id}`;
+        return `<article class="lead-list-item${expanded ? ' expanded' : ''}" role="listitem" data-lead-id="${e(lead.id)}"><button class="lead-compact" type="button" data-lead-expand="${e(lead.id)}" aria-expanded="${expanded}" aria-controls="${e(detailsId)}"><span class="lead-compact-copy"><strong>${e(lead.name)}</strong><span>${e(lead.potential)}</span></span><span class="lead-compact-meta">${pill(lead.score, lead.tone)}<span class="lead-priority ${e(priority[1])}">${e(priority[0])}</span></span><span class="lead-chevron" aria-hidden="true">⌄</span></button><div class="lead-expanded" id="${e(detailsId)}"${expanded ? '' : ' hidden'}><div class="lead-card"><div class="lead-details lead-details-full"><div><span>Source</span><strong>${e(String(lead.source).split(' · ')[0])}</strong></div><div><span>Product</span><strong>${e(lead.interest)}</strong></div><div class="lead-detail-wide"><span>Last interaction</span><strong>${e(lead.lastInteraction || String(lead.source).split(' · ').slice(1).join(' · '))}</strong></div></div>${lead.priorityReason ? `<div class="lead-insight"><strong>Why it matters</strong><p>${e(lead.priorityReason)}</p></div>` : ''}${lead.next ? `<div class="next-action"><span>Next action</span>${e(lead.next)}</div>` : ''}</div></div></article>`;
+      }).join('');
+      return `<section class="lead-column" data-lead-stage="${e(column.name)}" aria-labelledby="lead-stage-${e(column.name.toLowerCase().replace(/\s+/g, '-'))}"><div class="lead-column-head" id="lead-stage-${e(column.name.toLowerCase().replace(/\s+/g, '-'))}"><span>${e(column.name)}</span><span>${e(column.count)}</span></div><div class="lead-list" role="list">${leadItems}</div></section>`;
+    }).join('');
     return `<section id="leads" class="page active">${title(data)}${metrics(data.metrics)}<div class="lead-board">${board}</div></section>`;
   }
 
