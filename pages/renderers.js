@@ -33,7 +33,7 @@
   }
 
   function leads(data) {
-    const board = data.columns.map(column => `<div class="lead-column"><div class="lead-column-head"><span>${e(column.name)}</span><span>${e(column.count)}</span></div>${column.leads.map(lead => `<div class="lead-card"><div class="lead-top"><div><h4>${e(lead.name)}</h4><p>${e(lead.source)}</p></div>${pill(lead.score, lead.tone)}</div><div class="lead-details">${lead.details.map(detail => `<div><span>${e(detail.label)}</span><strong>${e(detail.value)}</strong></div>`).join('')}</div><div class="next-action">${e(lead.next)}</div></div>`).join('')}</div>`).join('');
+    const board = data.columns.map(column => `<div class="lead-column"><div class="lead-column-head"><span>${e(column.name)}</span><span>${e(column.count)}</span></div>${column.leads.map(lead => `<div class="lead-card" data-lead-id="${e(lead.id)}"><div class="lead-top"><div><h4>${e(lead.name)}</h4><p>${e(lead.lastInteraction ? `${String(lead.source).split(' · ')[0]} · ${lead.lastInteraction}` : lead.source)}</p></div>${pill(lead.score, lead.tone)}</div><div class="lead-details">${(lead.details || [{label:'Interest',value:lead.interest},{label:['Won','Lost'].includes(lead.stage)?'Value':'Potential',value:lead.potential}]).map(detail => `<div><span>${e(detail.label)}</span><strong>${e(detail.value)}</strong></div>`).join('')}</div>${lead.next ? `<div class="next-action">${e(lead.next)}</div>` : ''}</div>`).join('')}</div>`).join('');
     return `<section id="leads" class="page active">${title(data)}${metrics(data.metrics)}<div class="lead-board">${board}</div></section>`;
   }
 

@@ -143,6 +143,7 @@ document.addEventListener('click', event => {
   else if (button.dataset.action === 'export-inventory') openInventoryExport();
   else if (button.dataset.action === 'copilot') goTo('copilot');
   else if (button.dataset.action === 'connect') openConnect();
+  else if (button.dataset.action === 'review-high-priority') openHighPriorityReview(button);
   else if (button.dataset.action === 'toast') showToast(button.dataset.toast);
 });
 document.getElementById('connectModal').addEventListener('click', event => { if (event.target.id === 'connectModal') closeConnect(); });

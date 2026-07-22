@@ -1,9 +1,24 @@
 {
-  "metrics":[{"label":"New this week","value":"11","badge":"+37%","tone":"green"},{"label":"Pipeline value","value":"₹6.8L","badge":"31 leads","tone":"blue"},{"label":"Likely to convert","value":"9","badge":"AI score ≥ 75","tone":"green"},{"label":"Follow-ups due","value":"6","badge":"Today","tone":"amber"}],
+  "metrics":[{"label":"New this week","value":"11","badge":"+37%","tone":"green"},{"label":"Pipeline value","value":"₹6.8L","badge":"31 leads","tone":"blue"},{"label":"Likely to convert","value":"6","badge":"AI score ≥ 75","tone":"green"},{"label":"Follow-ups due","value":"6","badge":"Today","tone":"amber"}],
   "columns":[
-    {"name":"New","count":"8","leads":[{"name":"Ahuja Retail","source":"WhatsApp · 18 min ago","score":"88%","tone":"green","details":[{"label":"Interest","value":"Formal shirts"},{"label":"Potential","value":"₹76,000"}],"next":"Call today; mention bulk discount"},{"name":"Fashion Hub","source":"Instagram · 2h ago","score":"63%","tone":"amber","details":[{"label":"Interest","value":"Jeans"},{"label":"Potential","value":"₹42,000"}],"next":"Send catalogue and MOQ"}]},
-    {"name":"Contacted","count":"10","leads":[{"name":"Gupta Garments","source":"Email · Yesterday","score":"79%","tone":"green","details":[{"label":"Interest","value":"Mixed stock"},{"label":"Potential","value":"₹1.12L"}],"next":"Share revised quotation"}]},
-    {"name":"Quotation sent","count":"7","leads":[{"name":"Royal Menswear","source":"Website · 3 days ago","score":"84%","tone":"green","details":[{"label":"Interest","value":"Shirts"},{"label":"Potential","value":"₹94,000"}],"next":"Follow up before 5 PM"}]},
-    {"name":"Won","count":"6","leads":[{"name":"Modern Retailers","source":"WhatsApp · Won today","score":"Converted","tone":"blue","details":[{"label":"Order","value":"ORD-2091"},{"label":"Value","value":"₹68,500"}],"next":"Inventory reserved; invoice drafted"}]}
+    {"name":"New","count":"3","leads":[
+      {"id":"ahuja-retail","name":"Ahuja Retail","source":"WhatsApp · 18 min ago","score":"88%","tone":"green","interest":"Formal shirts","potential":"₹76,000","lastInteraction":"18 minutes ago","followUpAt":"2026-07-22T09:00:00+05:30","priorityReason":"The customer asked twice about bulk pricing and requested delivery availability.","next":"Call today and mention the bulk discount.","whatsappMessage":"Hi Ahuja Retail, thank you for your interest in our formal shirts. We can offer special bulk pricing for your requested quantity. Please let us know a convenient time to discuss the order."},
+      {"id":"kapoor-uniforms","name":"Kapoor Uniforms","source":"Website · 42 min ago","score":"91%","tone":"green","interest":"School uniforms","potential":"₹1.35L","lastInteraction":"42 minutes ago","followUpAt":"2026-07-21T15:00:00+05:30","priorityReason":"They shared an exact quantity and need delivery before the new school term.","next":"Confirm production capacity and call today."},
+      {"id":"fashion-hub","name":"Fashion Hub","source":"Instagram · 2h ago","score":"63%","tone":"amber","interest":"Jeans","potential":"₹42,000","lastInteraction":"2 hours ago","followUpAt":"2026-07-24T10:00:00+05:30","priorityReason":"The customer requested a catalogue.","next":"Send catalogue and MOQ."}
+    ]},
+    {"name":"Contacted","count":"2","leads":[
+      {"id":"gupta-garments","name":"Gupta Garments","source":"Email · Yesterday","score":"79%","tone":"green","interest":"Mixed stock","potential":"₹1.12L","lastInteraction":"Yesterday","followUpAt":"2026-07-20T12:00:00+05:30","priorityReason":"The buyer reviewed the first estimate and requested revised pricing for a larger order.","next":"Share revised quotation."},
+      {"id":"mehta-fashions","name":"Mehta Fashions","source":"WhatsApp · Yesterday","score":"82%","tone":"green","interest":"Festive kurtas","potential":"₹58,000","lastInteraction":"Yesterday","followUpAt":"2026-07-22T11:30:00+05:30","priorityReason":"They confirmed sizes and colours and are waiting for a formal price.","next":"Send quotation with festive collection pricing."}
+    ]},
+    {"name":"Quotation sent","count":"2","leads":[
+      {"id":"royal-menswear","name":"Royal Menswear","source":"Website · 3 days ago","score":"84%","tone":"green","interest":"Shirts","potential":"₹94,000","lastInteraction":"3 days ago","followUpAt":"2026-07-19T17:00:00+05:30","priorityReason":"The quotation was viewed twice and the customer asked about delivery timing.","next":"Follow up before 5 PM."},
+      {"id":"singh-apparels","name":"Singh Apparels","source":"Email · 4 days ago","score":"74%","tone":"amber","interest":"Denim jackets","potential":"₹67,500","lastInteraction":"4 days ago","followUpAt":"2026-07-18T10:00:00+05:30","priorityReason":"Their quotation is due for follow-up and stock for the requested sizes is limited.","next":"Send a WhatsApp reminder about stock availability."}
+    ]},
+    {"name":"Negotiation","count":"1","leads":[
+      {"id":"verma-retail","name":"Verma Retail Co.","source":"WhatsApp · Today","score":"86%","tone":"green","interest":"Cotton trousers","potential":"₹88,000","lastInteraction":"Today at 10:10 AM","followUpAt":"2026-07-22T14:00:00+05:30","priorityReason":"The buyer accepted the product mix and is waiting for final payment terms.","next":"Confirm the order and mark as won."}
+    ]},
+    {"name":"Won","count":"1","leads":[
+      {"id":"modern-retailers","name":"Modern Retailers","source":"WhatsApp · Won today","score":"Converted","tone":"blue","interest":"Formal wear","potential":"₹68,500","lastInteraction":"Won today","priorityReason":"Order completed.","next":""}
+    ]}
   ]
 }
