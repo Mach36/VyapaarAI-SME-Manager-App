@@ -1,4 +1,6 @@
 window.VyapaarPages ??= {};
+window.inventoryIncomingStock = {};
+window.inventoryPurchaseActivity = [];
 window.VyapaarPages.inventory = async function () {
   const data = await fetchPageData('inventory');
   window.inventoryData = data.products;
@@ -350,12 +352,11 @@ function renderPurchaseOrderSuccess(status) {
   const grandTotal = totals.subtotal + totals.gst;
   const isDraft = status === 'Draft';
   if (!isDraft) {
-    let incoming = {}; try { incoming = JSON.parse(sessionStorage.getItem('vyapaar-incoming-stock')) || {}; } catch (_) {}
+    const incoming = window.inventoryIncomingStock;
     purchaseOrderState.lines.forEach(line => { incoming[line.sku] = (Number(incoming[line.sku]) || 0) + line.quantity; });
-    sessionStorage.setItem('vyapaar-incoming-stock', JSON.stringify(incoming));
-    let activity = []; try { activity = JSON.parse(sessionStorage.getItem('vyapaar-inventory-activity')) || []; } catch (_) {}
+    const activity = window.inventoryPurchaseActivity;
     activity.unshift({ icon: 'PO', title: `${purchaseOrderState.number} created`, text: `${purchaseOrderState.lines.length} product${purchaseOrderState.lines.length === 1 ? '' : 's'} ordered from ${purchaseOrderState.supplier} · ${poCurrency(grandTotal)}` });
-    sessionStorage.setItem('vyapaar-inventory-activity', JSON.stringify(activity.slice(0, 5)));
+    window.inventoryPurchaseActivity = activity.slice(0, 5);
     const inventory = document.getElementById('inventory');
     if (inventory) {
       let panel = inventory.querySelector('.inventory-activity');
