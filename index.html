@@ -22,11 +22,7 @@
       <button data-page="copilot"><span class="icon">✦</span>AI Copilot</button>
       <button data-page="integrations"><span class="icon">⌘</span>Integrations</button>
     </nav>
-    <div class="sidebar-card">
-      <strong>Business health: 82/100</strong>
-      <p>Two actions can improve cash flow and prevent a stock-out.</p>
-      <button onclick="goTo('copilot')">View AI advice</button>
-    </div>
+    <div class="sidebar-card"><strong>Business health: 82/100</strong><p>Two actions can improve cash flow and prevent a stock-out.</p><button onclick="goTo('copilot')">View AI advice</button></div>
   </aside>
 
   <main class="main" id="main-content">
@@ -37,13 +33,12 @@
         <input id="globalSearch" type="search" aria-label="Search business data" placeholder="Search invoices, customers, products, payments..." />
       </div>
       <div class="profile">
-        <div class="avatar">RS</div>
-        <span><strong>Rajesh Sharma</strong><br><small>Sharma Garments</small></span>
+        <div class="avatar">RS</div><span><strong>Rajesh Sharma</strong><br><small>Sharma Garments</small></span>
       </div>
     </div>
 
     <div id="pageContent" class="page-content" aria-live="polite">
-      <div class="page-loader" role="status">Loading overview…</div>
+      <div class="page-loader" role="status">Loading…</div>
     </div>
   </main>
 </div>
@@ -55,20 +50,14 @@
       <button class="close" type="button" aria-label="Close dialog" onclick="closeConnect()">×</button>
     </div>
     <div class="steps"><div class="step active"></div><div class="step active"></div><div class="step"></div></div>
-    <div class="connect-list" id="connectList">
-      <button class="connect-option selected">WhatsApp Business<br><small>Leads & orders</small></button>
-      <button class="connect-option selected">Tally<br><small>Accounts & invoices</small></button>
-      <button class="connect-option">Zoho<br><small>CRM & customers</small></button>
-      <button class="connect-option">Instagram<br><small>Social leads</small></button>
-      <button class="connect-option">Shopify<br><small>Orders & stock</small></button>
-      <button class="connect-option">Google Sheets<br><small>Existing trackers</small></button>
-    </div>
+    <div class="connect-list" id="connectList"><button class="connect-option selected">WhatsApp Business<br><small>Leads & orders</small></button><button class="connect-option selected">Tally<br><small>Accounts & invoices</small></button><button class="connect-option">Zoho<br><small>CRM & customers</small></button><button class="connect-option">Instagram<br><small>Social leads</small></button><button class="connect-option">Shopify<br><small>Orders & stock</small></button><button class="connect-option">Google Sheets<br><small>Existing trackers</small></button></div>
     <div class="modal-footer"><button class="btn btn-outline" onclick="closeConnect()">Cancel</button><button class="btn btn-brand" onclick="finishConnect()">Connect selected apps</button></div>
   </div>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="pages/renderers.js"></script>
 <script src="pages/home.js"></script>
 <script src="pages/records.js"></script>
 <script src="pages/inventory.js"></script>

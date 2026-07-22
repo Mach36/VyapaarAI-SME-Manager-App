@@ -1,0 +1,11 @@
+{
+  "metrics":[{"label":"Total SKUs","value":"428","badge":"412 in stock","tone":"green"},{"label":"Stock value","value":"₹18.2L","badge":"Across 2 locations","tone":"blue"},{"label":"At risk","value":"4","badge":"Likely stock-outs","tone":"red"},{"label":"Dead stock","value":"₹72K","badge":"12 slow SKUs","tone":"amber"}],
+  "products":[
+    {"name":"Blue cotton shirt · M","sku":"SKU SH-BLU-M","available":"34","committed":"12","stockout":"6 days","tone":"red","margin":"28%","recommendation":{"label":"Reorder 80","toast":"Reorder draft for 80 units created"}},
+    {"name":"Formal white shirt · L","sku":"SKU SH-WHT-L","available":"118","committed":"30","stockout":"32 days","tone":"green","margin":"32%","recommendation":"Maintain current level"},
+    {"name":"Slim-fit jeans · 32","sku":"SKU JN-SLM-32","available":"64","committed":"8","stockout":"14 days","tone":"amber","margin":"24%","recommendation":"Reorder next week"},
+    {"name":"Winter jacket · XL","sku":"SKU JK-WIN-XL","available":"79","committed":"2","stockout":"Seasonal","tone":"blue","margin":"18%","recommendation":"Discount 10% to clear"}
+  ],
+  "forecasts":[{"icon":"↗","title":"Formal shirts demand +22%","text":"Driven by two repeat wholesale customers and upcoming school orders."},{"icon":"↘","title":"Winter jackets demand -36%","text":"Seasonal slowdown detected. Consider bundling with clearance offers."}],
+  "suppliers":[{"icon":"S","title":"Sharma Textiles","text":"Lowest cost for cotton shirts. Average delay: 1.2 days."},{"icon":"A","title":"Agarwal Fabrics","text":"4% higher price, but best delivery consistency."}]
+}

@@ -1,0 +1,6 @@
+{
+  "metrics":[{"label":"Connected sources","value":"6","badge":"All healthy","tone":"green"},{"label":"Records synced today","value":"142","badge":"Automatic","tone":"blue"},{"label":"Last sync","value":"2 min","badge":"Real-time","tone":"green"},{"label":"Manual entries avoided","value":"89%","badge":"This month","tone":"green"}],
+  "integrations":[
+    {"icon":"W","name":"WhatsApp Business","description":"Capture enquiries, orders and payment follow-ups.","connected":true},{"icon":"T","name":"Tally","description":"Sync ledgers, invoices, customers and tax records.","connected":true},{"icon":"₹","name":"UPI & Bank","description":"Match payments and reconcile invoices automatically.","connected":true},{"icon":"S","name":"Shopify","description":"Sync products, orders, returns and customers.","connected":true},{"icon":"I","name":"Instagram","description":"Turn DMs and comments into qualified leads.","toast":"Instagram connected"},{"icon":"Z","name":"Zoho","description":"Import CRM contacts and sales pipeline records.","toast":"Zoho connection started"},{"icon":"G","name":"Gmail","description":"Capture enquiries, quotations and supplier documents.","connected":true},{"icon":"X","name":"Excel / Sheets","description":"Upload or continuously sync operational trackers.","toast":"Spreadsheet upload opened"}
+  ]
+}

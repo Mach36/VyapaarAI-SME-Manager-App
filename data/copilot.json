@@ -1,0 +1,11 @@
+{
+  "prompts":["Show all overdue invoices","Which products may stock out?","Draft a WhatsApp follow-up","Create this month's GST summary","Which leads should I call today?"],
+  "replies":[
+    {"keywords":["overdue","not paid"],"text":"You have 8 overdue invoices worth ₹2.14L. The highest-risk invoices are Mehta Stores (₹38,400, 12 days overdue) and City Fashion (₹29,700, 9 days overdue). I can draft follow-up messages for both."},
+    {"keywords":["stock","inventory"],"text":"Four SKUs may stock out within 14 days. Blue cotton shirt · M is most urgent: 34 units available, 12 committed, estimated stock-out in 6 days. Recommended reorder: 80 units from Sharma Textiles."},
+    {"keywords":["whatsapp","follow-up"],"text":"Draft: “Hi Mehta Stores, a gentle reminder that invoice INV-1048 for ₹38,400 is pending since 10 July. Please share an expected payment date. I can resend the invoice if helpful.”"},
+    {"keywords":["gst"],"text":"Your draft GST summary for July shows taxable sales of ₹8.72L, output GST of ₹1.57L, eligible input credit of ₹94,000, and estimated net GST payable of ₹63,000. Four transactions need review."},
+    {"keywords":["lead","call today"],"text":"Prioritise Ahuja Retail, Royal Menswear and Gupta Garments today. Their combined estimated value is ₹2.82L. Ahuja Retail has the strongest intent with an 88% conversion score."}
+  ],
+  "fallbackReply":"I found relevant information across your connected systems. Based on your current records, I recommend reviewing the pending payment from Mehta Stores and the blue cotton shirt stock risk first."
+}

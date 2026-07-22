@@ -1,0 +1,9 @@
+{
+  "metrics":[{"label":"Sales records","value":"1,284","badge":"Synced","tone":"blue"},{"label":"Pending payments","value":"₹2.14L","badge":"8 invoices","tone":"amber"},{"label":"Expenses this month","value":"₹1.72L","badge":"Categorised","tone":"green"},{"label":"Data quality","value":"96%","badge":"4 issues resolved","tone":"green"}],
+  "records":[
+    {"icon":"INV","title":"INV-1048 · Mehta Stores","meta":"Sales invoice · 10 Jul 2026 · Imported from Tally","value":"₹38,400","status":"Overdue","tone":"red"},
+    {"icon":"UPI","title":"Payment · Ramesh Traders","meta":"Matched to INV-1042 · Received via UPI","value":"₹24,850","status":"Reconciled","tone":"green"},
+    {"icon":"PUR","title":"Purchase · Sharma Textiles","meta":"Supplier invoice · OCR captured from PDF","value":"₹61,200","status":"Verified","tone":"blue"},
+    {"icon":"EXP","title":"Packaging material expense","meta":"Automatically categorised · Cash entry from WhatsApp note","value":"₹4,600","status":"Review","tone":"amber"}
+  ]
+}

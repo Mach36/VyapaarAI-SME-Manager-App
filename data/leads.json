@@ -1,0 +1,9 @@
+{
+  "metrics":[{"label":"New this week","value":"11","badge":"+37%","tone":"green"},{"label":"Pipeline value","value":"₹6.8L","badge":"31 leads","tone":"blue"},{"label":"Likely to convert","value":"9","badge":"AI score ≥ 75","tone":"green"},{"label":"Follow-ups due","value":"6","badge":"Today","tone":"amber"}],
+  "columns":[
+    {"name":"New","count":"8","leads":[{"name":"Ahuja Retail","source":"WhatsApp · 18 min ago","score":"88%","tone":"green","details":[{"label":"Interest","value":"Formal shirts"},{"label":"Potential","value":"₹76,000"}],"next":"Call today; mention bulk discount"},{"name":"Fashion Hub","source":"Instagram · 2h ago","score":"63%","tone":"amber","details":[{"label":"Interest","value":"Jeans"},{"label":"Potential","value":"₹42,000"}],"next":"Send catalogue and MOQ"}]},
+    {"name":"Contacted","count":"10","leads":[{"name":"Gupta Garments","source":"Email · Yesterday","score":"79%","tone":"green","details":[{"label":"Interest","value":"Mixed stock"},{"label":"Potential","value":"₹1.12L"}],"next":"Share revised quotation"}]},
+    {"name":"Quotation sent","count":"7","leads":[{"name":"Royal Menswear","source":"Website · 3 days ago","score":"84%","tone":"green","details":[{"label":"Interest","value":"Shirts"},{"label":"Potential","value":"₹94,000"}],"next":"Follow up before 5 PM"}]},
+    {"name":"Won","count":"6","leads":[{"name":"Modern Retailers","source":"WhatsApp · Won today","score":"Converted","tone":"blue","details":[{"label":"Order","value":"ORD-2091"},{"label":"Value","value":"₹68,500"}],"next":"Inventory reserved; invoice drafted"}]}
+  ]
+}

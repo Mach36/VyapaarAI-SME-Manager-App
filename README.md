@@ -3,7 +3,20 @@
 A clickable, no-backend prototype created for the UnifyApps SME assignment.
 
 ## How to run
-Open `index.html` in any modern browser.
+
+The page JavaScript modules fetch their datasets from JSON, so serve the folder locally:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`.
+
+## Editing displayed data
+
+- Each screen has its own data file: `home.json`, `records.json`, `inventory.json`, `leads.json`, `copilot.json`, and `integrations.json`.
+- Add new list entries by copying an existing object in the relevant JSON array and changing its values.
+- Page headings, layouts, buttons, and rendering remain in the corresponding files under `pages/`.
 
 ## Included flows
 - Unified business overview

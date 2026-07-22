@@ -1,0 +1,19 @@
+{
+  "heroInsight": {"label":"Most important today","value":"₹2.14L","text":"Pending across 8 invoices. Two customers are likely to pay late."},
+  "metrics": [
+    {"label":"Revenue today","icon":"↗","value":"₹82,450","detail":"+12.8% vs last Wednesday"},
+    {"label":"Inventory value","icon":"◫","value":"₹18.2L","detail":"4 SKUs need attention","tone":"down"},
+    {"label":"Open leads","icon":"◎","value":"31","detail":"11 new this week"},
+    {"label":"Cash flow","icon":"₹","value":"Positive","detail":"₹3.4L projected this month"}
+  ],
+  "recommendations": [
+      {"icon":"◫","title":"Reorder blue cotton shirts today","text":"At the current sales rate, this SKU will stock out in 6 days. Suggested reorder: 80 units."},
+      {"icon":"₹","title":"Follow up with Mehta Stores","text":"Invoice INV-1048 is overdue by 12 days. Payment probability improves if contacted before 4 PM."},
+      {"icon":"◎","title":"Prioritise Ahuja Retail","text":"High-intent WhatsApp enquiry. Estimated order value ₹76,000 with 88% conversion probability."}
+    ],
+  "activity": [
+      {"icon":"W","title":"New WhatsApp enquiry","text":"Ahuja Retail asked for 120 formal shirts. Lead created automatically."},
+      {"icon":"₹","title":"UPI payment matched","text":"₹24,850 received from Ramesh Traders and linked to INV-1042."},
+      {"icon":"T","title":"Tally sync completed","text":"18 invoices, 6 purchases and 3 credit notes updated."}
+    ]
+}
