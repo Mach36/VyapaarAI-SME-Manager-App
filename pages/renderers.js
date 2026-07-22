@@ -4,7 +4,10 @@
   const actions = items => items?.length ? `<div class="page-actions">${items.map(item => `<button class="btn btn-${e(item.style)}" data-action="${e(item.action || 'toast')}" data-toast="${e(item.toast)}">${e(item.label)}</button>`).join('')}</div>` : '';
   const title = data => `<div class="page-title"><div><h1>${e(data.title)}</h1><p>${e(data.subtitle)}</p></div>${actions(data.actions)}</div>`;
   const metrics = items => `<div class="grid-4 metrics-grid">${items.map(item => {
-    const content = `<div class="metric-label">${e(item.label)}${item.icon ? ` <span>${e(item.icon)}</span>` : ''}</div><div class="metric-value">${e(item.value)}</div>${item.badge ? pill(item.badge, item.tone) : `<div class="trend ${e(item.tone)}">${e(item.detail)}</div>`}`;
+    const value = item.syncAction
+      ? `<div class="sync-metric-row"><div class="metric-value" id="lastSyncValue" aria-live="polite">${e(item.value)}</div><button class="btn btn-outline sync-now-button" type="button" data-action="sync-integrations"><span class="sync-spinner" aria-hidden="true"></span><span class="sync-button-label">Sync now</span></button></div>`
+      : `<div class="metric-value">${e(item.value)}</div>`;
+    const content = `<div class="metric-label">${e(item.label)}${item.icon ? ` <span>${e(item.icon)}</span>` : ''}</div>${value}${item.badge ? pill(item.badge, item.tone) : `<div class="trend ${e(item.tone)}">${e(item.detail)}</div>`}`;
     return item.action ? `<button class="card metric-card-action" type="button" data-action="${e(item.action)}" aria-pressed="false">${content}</button>` : `<div class="card">${content}</div>`;
   }).join('')}</div>`;
   const insightItems = items => `<div class="insight-list">${items.map(item => `<div class="insight"><div class="insight-icon">${e(item.icon)}</div><div><strong>${e(item.title)}</strong><p>${e(item.text)}</p></div></div>`).join('')}</div>`;
@@ -54,7 +57,7 @@
     const cards = data.integrations.map(item => {
       const fallback = String(item.name || '?').trim().charAt(0).toUpperCase();
       const logo = `<div class="integration-logo"><img src="${e(item.logo)}" alt="${e(item.name)} logo" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="integration-logo-fallback" hidden aria-hidden="true">${e(fallback)}</span></div>`;
-      return `<div class="integration-card">${logo}<h4>${e(item.name)}</h4><p>${e(item.description)}</p>${item.connected ? `<div class="connected">${e(data.connectedLabel)}</div>` : `<button class="btn btn-outline" data-action="toast" data-toast="${e(item.toast)}">${e(data.connectLabel)}</button>`}</div>`;
+      return `<div class="integration-card">${logo}<h4>${e(item.name)}</h4><p>${e(item.description)}</p>${item.connected ? `<div class="integration-sync-status"><span class="connected">${e(data.connectedLabel)}</span><span class="integration-last-sync" data-integration-last-sync>Last sync: ${e(item.lastSync)}</span></div>` : `<button class="btn btn-outline" type="button" data-action="toast" data-toast="${e(item.toast)}">${e(data.connectLabel)}</button>`}</div>`;
     }).join('');
     return `<section id="integrations" class="page active">${title(data)}${metrics(data.metrics)}<div class="integration-grid">${cards}</div></section>`;
   }

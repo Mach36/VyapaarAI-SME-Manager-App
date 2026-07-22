@@ -51,6 +51,39 @@ function closeConnect() { document.getElementById('connectModal').classList.remo
 function finishConnect() { closeConnect(); showToast('Selected apps connected. Initial sync started.'); }
 function showToast(message) { const toast = document.getElementById('toast'); toast.textContent = message; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2600); }
 
+function syncIntegrations(button) {
+  if (button.disabled) return;
+  const label = button.querySelector('.sync-button-label');
+  button.disabled = true;
+  button.classList.add('is-syncing');
+  button.setAttribute('aria-label', 'Syncing connected integrations');
+  if (label) label.textContent = 'Syncing...';
+
+  const delay = 1200 + Math.floor(Math.random() * 601);
+  window.setTimeout(() => {
+    document.getElementById('lastSyncValue')?.replaceChildren('Just now');
+    document.querySelectorAll('[data-integration-last-sync]').forEach(syncTime => {
+      syncTime.textContent = 'Last sync: Just now';
+    });
+
+    const recordsMetric = [...document.querySelectorAll('.metrics-grid .card')].find(card =>
+      card.querySelector('.metric-label')?.textContent.trim() === 'Records synced today'
+    );
+    const recordsValue = recordsMetric?.querySelector('.metric-value');
+    if (recordsValue) {
+      const currentCount = Number(recordsValue.textContent.replace(/,/g, '')) || 0;
+      const addedRecords = 8 + Math.floor(Math.random() * 8);
+      recordsValue.textContent = (currentCount + addedRecords).toLocaleString();
+    }
+
+    button.disabled = false;
+    button.classList.remove('is-syncing');
+    button.setAttribute('aria-label', 'Sync all connected integrations');
+    if (label) label.textContent = 'Sync now';
+    showToast('All connected integrations synced successfully.');
+  }, delay);
+}
+
 function filterRecords() {
   const search = document.getElementById('recordSearch');
   if (!search) return;
@@ -143,6 +176,7 @@ document.addEventListener('click', event => {
   else if (button.dataset.action === 'export-inventory') openInventoryExport();
   else if (button.dataset.action === 'copilot') goTo('copilot');
   else if (button.dataset.action === 'connect') openConnect();
+  else if (button.dataset.action === 'sync-integrations') syncIntegrations(button);
   else if (button.dataset.action === 'review-high-priority') openHighPriorityReview(button);
   else if (button.dataset.action === 'toast') showToast(button.dataset.toast);
 });
