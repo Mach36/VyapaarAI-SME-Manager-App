@@ -51,7 +51,11 @@
   }
 
   function integrations(data) {
-    const cards = data.integrations.map(item => `<div class="integration-card"><div class="integration-logo">${e(item.icon)}</div><h4>${e(item.name)}</h4><p>${e(item.description)}</p>${item.connected ? `<div class="connected">${e(data.connectedLabel)}</div>` : `<button class="btn btn-outline" data-action="toast" data-toast="${e(item.toast)}">${e(data.connectLabel)}</button>`}</div>`).join('');
+    const cards = data.integrations.map(item => {
+      const fallback = String(item.name || '?').trim().charAt(0).toUpperCase();
+      const logo = `<div class="integration-logo"><img src="${e(item.logo)}" alt="${e(item.name)} logo" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="integration-logo-fallback" hidden aria-hidden="true">${e(fallback)}</span></div>`;
+      return `<div class="integration-card">${logo}<h4>${e(item.name)}</h4><p>${e(item.description)}</p>${item.connected ? `<div class="connected">${e(data.connectedLabel)}</div>` : `<button class="btn btn-outline" data-action="toast" data-toast="${e(item.toast)}">${e(data.connectLabel)}</button>`}</div>`;
+    }).join('');
     return `<section id="integrations" class="page active">${title(data)}${metrics(data.metrics)}<div class="integration-grid">${cards}</div></section>`;
   }
 

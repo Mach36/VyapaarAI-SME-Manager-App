@@ -2,6 +2,10 @@
 
 A clickable, no-backend prototype created for the UnifyApps SME assignment.
 
+## Product requirements
+
+See the [VyapaarAI Product Requirements Document](VyapaarAI_PRD_Integrated.docx).
+
 ## How to run
 
 The page JavaScript modules fetch their datasets from JSON, so serve the folder locally:
