@@ -1,21 +1,261 @@
 {
-  "metrics":[{"label":"Sales records","value":"1,284","badge":"Synced","tone":"blue"},{"label":"Pending payments","value":"₹2.14L","badge":"8 invoices","tone":"amber"},{"label":"Expenses this month","value":"₹1.72L","badge":"Categorised","tone":"green"},{"label":"Data quality","value":"96%","badge":"4 issues resolved","tone":"green"}],
-  "records":[
-    {"icon":"INV","date":"2026-07-22","title":"INV-1059 · Kapoor Retail","meta":"Sales invoice · 22 Jul 2026 · Created in VyapaarAI","value":"₹52,700","status":"Paid","tone":"green"},
-    {"icon":"UPI","date":"2026-07-21","title":"Payment · Gupta Distributors","meta":"Matched to INV-1056 · 21 Jul 2026 · Received via UPI","value":"₹31,500","status":"Reconciled","tone":"green"},
-    {"icon":"PUR","date":"2026-07-20","title":"Purchase · Bharat Packaging","meta":"Supplier invoice · 20 Jul 2026 · Imported from Tally","value":"₹27,850","status":"Verified","tone":"blue"},
-    {"icon":"EXP","date":"2026-07-18","title":"Warehouse electricity expense","meta":"Utilities · 18 Jul 2026 · Imported from bank statement","value":"₹12,480","status":"Categorised","tone":"green"},
-    {"icon":"INV","date":"2026-07-17","title":"INV-1056 · Sunrise Mart","meta":"Sales invoice · 17 Jul 2026 · Imported from Tally","value":"₹31,500","status":"Paid","tone":"green"},
-    {"icon":"UPI","date":"2026-07-16","title":"Payment · Mehta Stores","meta":"Part payment for INV-1048 · 16 Jul 2026 · Received via NEFT","value":"₹20,000","status":"Partially matched","tone":"amber"},
-    {"icon":"PUR","date":"2026-07-15","title":"Purchase · Metro Wholesale","meta":"Supplier invoice · 15 Jul 2026 · OCR captured from PDF","value":"₹44,300","status":"Verified","tone":"blue"},
-    {"icon":"EXP","date":"2026-07-13","title":"Local delivery expense","meta":"Logistics · 13 Jul 2026 · Cash voucher uploaded","value":"₹3,250","status":"Categorised","tone":"green"},
-    {"icon":"INV","date":"2026-07-10","title":"INV-1048 · Mehta Stores","meta":"Sales invoice · 10 Jul 2026 · Imported from Tally","value":"₹38,400","status":"Overdue","tone":"red"},
-    {"icon":"UPI","date":"2026-07-09","title":"Payment · Ramesh Traders","meta":"Matched to INV-1042 · 9 Jul 2026 · Received via UPI","value":"₹24,850","status":"Reconciled","tone":"green"},
-    {"icon":"PUR","date":"2026-07-08","title":"Purchase · Sharma Textiles","meta":"Supplier invoice · 8 Jul 2026 · OCR captured from PDF","value":"₹61,200","status":"Verified","tone":"blue"},
-    {"icon":"EXP","date":"2026-07-06","title":"Packaging material expense","meta":"Packaging · 6 Jul 2026 · Cash entry from WhatsApp note","value":"₹4,600","status":"Review","tone":"amber"},
-    {"icon":"INV","date":"2026-07-05","title":"INV-1039 · City Bazaar","meta":"Sales invoice · 5 Jul 2026 · Created in VyapaarAI","value":"₹46,250","status":"Pending","tone":"amber"},
-    {"icon":"UPI","date":"2026-07-04","title":"Payment · City Bazaar","meta":"Advance payment · 4 Jul 2026 · Received via IMPS","value":"₹15,000","status":"Unmatched","tone":"red"},
-    {"icon":"PUR","date":"2026-07-03","title":"Purchase · National Stationery","meta":"Supplier invoice · 3 Jul 2026 · Forwarded from email","value":"₹18,940","status":"Review","tone":"amber"},
-    {"icon":"EXP","date":"2026-07-02","title":"Office internet expense","meta":"Utilities · 2 Jul 2026 · Auto-debit from bank","value":"₹2,999","status":"Categorised","tone":"green"}
-  ]
+  "metrics": [
+    {
+      "label": "Sales records",
+      "value": "1,284",
+      "badge": "Synced",
+      "tone": "blue"
+    },
+    {
+      "label": "Pending payments",
+      "value": "₹2.14L",
+      "badge": "8 invoices",
+      "tone": "amber"
+    },
+    {
+      "label": "Expenses this month",
+      "value": "₹1.72L",
+      "badge": "Categorised",
+      "tone": "green"
+    },
+    {
+      "label": "Data quality",
+      "value": "96%",
+      "badge": "4 issues resolved",
+      "tone": "green"
+    }
+  ],
+  "records": [
+    {
+      "icon": "INV",
+      "date": "2026-07-22",
+      "title": "INV-1059 · Kapoor Retail",
+      "meta": "Sales invoice · 22 Jul 2026 · Created in VyapaarAI",
+      "value": "₹52,700",
+      "status": "Paid",
+      "tone": "green"
+    },
+    {
+      "icon": "UPI",
+      "date": "2026-07-21",
+      "title": "Payment · Gupta Distributors",
+      "meta": "Matched to INV-1056 · 21 Jul 2026 · Received via UPI",
+      "value": "₹31,500",
+      "status": "Reconciled",
+      "tone": "green"
+    },
+    {
+      "icon": "PUR",
+      "date": "2026-07-20",
+      "title": "Purchase · Bharat Packaging",
+      "meta": "Supplier invoice · 20 Jul 2026 · Imported from Tally",
+      "value": "₹27,850",
+      "status": "Verified",
+      "tone": "blue"
+    },
+    {
+      "icon": "EXP",
+      "date": "2026-07-18",
+      "title": "Warehouse electricity expense",
+      "meta": "Utilities · 18 Jul 2026 · Imported from bank statement",
+      "value": "₹12,480",
+      "status": "Categorised",
+      "tone": "green"
+    },
+    {
+      "icon": "INV",
+      "date": "2026-07-17",
+      "title": "INV-1056 · Sunrise Mart",
+      "meta": "Sales invoice · 17 Jul 2026 · Imported from Tally",
+      "value": "₹31,500",
+      "status": "Paid",
+      "tone": "green"
+    },
+    {
+      "icon": "UPI",
+      "date": "2026-07-16",
+      "title": "Payment · Mehta Stores",
+      "meta": "Part payment for INV-1048 · 16 Jul 2026 · Received via NEFT",
+      "value": "₹20,000",
+      "status": "Partially matched",
+      "tone": "amber"
+    },
+    {
+      "icon": "PUR",
+      "date": "2026-07-15",
+      "title": "Purchase · Metro Wholesale",
+      "meta": "Supplier invoice · 15 Jul 2026 · OCR captured from PDF",
+      "value": "₹44,300",
+      "status": "Verified",
+      "tone": "blue"
+    },
+    {
+      "icon": "EXP",
+      "date": "2026-07-13",
+      "title": "Local delivery expense",
+      "meta": "Logistics · 13 Jul 2026 · Cash voucher uploaded",
+      "value": "₹3,250",
+      "status": "Categorised",
+      "tone": "green"
+    },
+    {
+      "icon": "INV",
+      "date": "2026-07-10",
+      "title": "INV-1048 · Mehta Stores",
+      "meta": "Sales invoice · 10 Jul 2026 · Imported from Tally",
+      "value": "₹38,400",
+      "status": "Overdue",
+      "tone": "red"
+    },
+    {
+      "icon": "UPI",
+      "date": "2026-07-09",
+      "title": "Payment · Ramesh Traders",
+      "meta": "Matched to INV-1042 · 9 Jul 2026 · Received via UPI",
+      "value": "₹24,850",
+      "status": "Reconciled",
+      "tone": "green"
+    },
+    {
+      "icon": "PUR",
+      "date": "2026-07-08",
+      "title": "Purchase · Sharma Textiles",
+      "meta": "Supplier invoice · 8 Jul 2026 · OCR captured from PDF",
+      "value": "₹61,200",
+      "status": "Verified",
+      "tone": "blue"
+    },
+    {
+      "icon": "EXP",
+      "date": "2026-07-06",
+      "title": "Packaging material expense",
+      "meta": "Packaging · 6 Jul 2026 · Cash entry from WhatsApp note",
+      "value": "₹4,600",
+      "status": "Review",
+      "tone": "amber"
+    },
+    {
+      "icon": "INV",
+      "date": "2026-07-05",
+      "title": "INV-1039 · City Bazaar",
+      "meta": "Sales invoice · 5 Jul 2026 · Created in VyapaarAI",
+      "value": "₹46,250",
+      "status": "Pending",
+      "tone": "amber"
+    },
+    {
+      "icon": "UPI",
+      "date": "2026-07-04",
+      "title": "Payment · City Bazaar",
+      "meta": "Advance payment · 4 Jul 2026 · Received via IMPS",
+      "value": "₹15,000",
+      "status": "Unmatched",
+      "tone": "red"
+    },
+    {
+      "icon": "PUR",
+      "date": "2026-07-03",
+      "title": "Purchase · National Stationery",
+      "meta": "Supplier invoice · 3 Jul 2026 · Forwarded from email",
+      "value": "₹18,940",
+      "status": "Review",
+      "tone": "amber"
+    },
+    {
+      "icon": "EXP",
+      "date": "2026-07-02",
+      "title": "Office internet expense",
+      "meta": "Utilities · 2 Jul 2026 · Auto-debit from bank",
+      "value": "₹2,999",
+      "status": "Categorised",
+      "tone": "green"
+    }
+  ],
+  "uploadWorkflow": {
+    "processingStages": [
+      "Identifying document type",
+      "Extracting invoice information",
+      "Matching customer records",
+      "Checking for duplicate documents",
+      "Linking products and payments"
+    ],
+    "document": {
+      "type": "Sales invoice",
+      "confidence": 96,
+      "business": "Sharma Garments",
+      "invoiceNumber": "INV-1055",
+      "customer": "Ahuja Retail",
+      "invoiceDate": "22 July 2026",
+      "dueDate": "6 August 2026",
+      "customerGstNumber": "27AAECA1234K1Z7",
+      "gstConfidence": 78,
+      "subtotal": "₹64,407",
+      "gst": "₹11,593",
+      "total": "₹76,000",
+      "paymentStatus": "Unpaid",
+      "source": "Uploaded document"
+    },
+    "lineItems": [
+      {
+        "product": "Formal White Shirt · L",
+        "quantity": 50,
+        "unitPrice": 800,
+        "gst": 18,
+        "total": "₹40,000"
+      },
+      {
+        "product": "Blue Cotton Shirt · M",
+        "quantity": 30,
+        "unitPrice": 700,
+        "gst": 18,
+        "total": "₹21,000"
+      },
+      {
+        "product": "Packaging",
+        "quantity": 1,
+        "unitPrice": 3407,
+        "gst": 18,
+        "total": "₹3,407"
+      }
+    ],
+    "duplicateCheck": {
+      "result": "No exact duplicate found.",
+      "warning": "A similar quotation for Ahuja Retail was found and will be linked to this invoice.",
+      "quotation": "Quotation QUO-2088 · Created 18 July 2026 · Ahuja Retail · ₹76,000"
+    },
+    "businessUpdates": [
+      {
+        "area": "Record keeping",
+        "items": [
+          "Create sales invoice INV-1055",
+          "Add ₹76,000 to outstanding receivables",
+          "Set payment due date to 6 August 2026"
+        ]
+      },
+      {
+        "area": "Customer",
+        "items": [
+          "Link invoice to Ahuja Retail",
+          "Update customer lifetime value",
+          "Add the document to the customer timeline"
+        ]
+      },
+      {
+        "area": "Inventory",
+        "items": [
+          "Reduce Formal White Shirt · L by 50 units",
+          "Reduce Blue Cotton Shirt · M by 30 units",
+          "Flag Blue Cotton Shirt · M as low stock"
+        ]
+      },
+      {
+        "area": "Lead generation",
+        "items": [
+          "Mark the Ahuja Retail lead as won",
+          "Convert the quotation into order ORD-2094",
+          "Move the lead into the customer list"
+        ]
+      }
+    ]
+  }
 }
