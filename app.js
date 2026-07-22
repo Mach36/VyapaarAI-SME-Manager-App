@@ -2,6 +2,9 @@ const pageIds = ['home', 'records', 'inventory', 'leads', 'copilot', 'integratio
 const pageContent = document.getElementById('pageContent');
 const dataCache = new Map();
 const RECORD_FILTERS_KEY = 'vyapaar-record-filters';
+const COPILOT_HISTORY_KEY = 'vyapaar-copilot-history';
+const BUSINESS_HEALTH_ADVICE_ID = 'business-health-advice';
+const BUSINESS_HEALTH_ADVICE = `Your business health score is 82/100. Two actions can improve it today:\n\n1. Recover the overdue payment from Mehta Stores\nInvoice INV-1048 for ₹38,400 is overdue by 12 days. Contacting the customer today could improve cash flow.\n\n2. Prevent a stock-out of Blue Cotton Shirt · M\nOnly 34 units are available and 12 are committed. At the current sales rate, this product may stock out in six days. Recommended reorder quantity: 80 units from Sharma Textiles.\n\nCompleting both actions could improve your business health score to approximately 91/100.`;
 
 async function getJson(path) {
   if (!dataCache.has(path)) {
@@ -21,6 +24,7 @@ async function loadPage(id) {
     if (!renderPage) throw new Error(`Missing page module: ${id}`);
     pageContent.innerHTML = await renderPage();
     if (id === 'records') restoreRecordFilters();
+    if (id === 'copilot') restoreCopilotHistory();
   } catch (error) {
     pageContent.innerHTML = `<section class="page active page-error"><h1>This section could not be loaded</h1><p>The ${id} page data is missing.</p></section>`;
     console.error(error);
@@ -168,9 +172,83 @@ function getReply(text) {
   const query = text.toLowerCase();
   return window.copilotData.replies.find(reply => reply.keywords.some(keyword => query.includes(keyword)))?.text || window.copilotData.fallbackReply;
 }
+function getCopilotHistory() {
+  try {
+    const history = JSON.parse(sessionStorage.getItem(COPILOT_HISTORY_KEY));
+    return Array.isArray(history) ? history : [];
+  } catch (_) { return []; }
+}
+
+function saveCopilotMessage(entry) {
+  const history = getCopilotHistory();
+  if (entry.id && history.some(message => message.id === entry.id)) return;
+  history.push(entry);
+  sessionStorage.setItem(COPILOT_HISTORY_KEY, JSON.stringify(history));
+}
+
+function createCopilotMessage(entry) {
+  const message = document.createElement('div');
+  message.className = `message ${entry.type || 'ai'}${entry.kind === 'business-health' ? ' advice-message' : ''}`;
+  if (entry.id) message.dataset.messageId = entry.id;
+  if (entry.kind === 'business-health') {
+    message.innerHTML = `<p>Your business health score is 82/100. Two actions can improve it today:</p>
+      <div class="advice-item"><strong>1. Recover the overdue payment from Mehta Stores</strong><span>Invoice INV-1048 for ₹38,400 is overdue by 12 days. Contacting the customer today could improve cash flow.</span></div>
+      <div class="advice-item"><strong>2. Prevent a stock-out of Blue Cotton Shirt · M</strong><span>Only 34 units are available and 12 are committed. At the current sales rate, this product may stock out in six days. Recommended reorder quantity: 80 units from Sharma Textiles.</span></div>
+      <p>Completing both actions could improve your business health score to approximately 91/100.</p>
+      <div class="advice-actions"><button type="button" data-action="review-overdue-invoice">Review overdue invoice</button><button type="button" data-action="advice-create-purchase-order">Create purchase order</button></div>`;
+  } else message.textContent = entry.text;
+  return message;
+}
+
+function appendCopilotMessage(entry, options = {}) {
+  const messages = document.getElementById('messages');
+  if (!messages) return null;
+  const message = createCopilotMessage(entry);
+  messages.appendChild(message);
+  if (options.persist !== false) saveCopilotMessage(entry);
+  if (options.scroll !== false) requestAnimationFrame(() => message.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+  return message;
+}
+
+function restoreCopilotHistory() {
+  getCopilotHistory().forEach(entry => appendCopilotMessage(entry, { persist: false, scroll: false }));
+  requestAnimationFrame(() => { const messages = document.getElementById('messages'); if (messages) messages.scrollTop = messages.scrollHeight; });
+}
+
+function brieflyHighlight(element) {
+  if (!element) return;
+  element.classList.remove('context-highlight');
+  void element.offsetWidth;
+  element.classList.add('context-highlight');
+  window.setTimeout(() => element.classList.remove('context-highlight'), 1800);
+}
+
+async function showBusinessHealthAdvice() {
+  await goTo('copilot');
+  let message = document.querySelector(`[data-message-id="${BUSINESS_HEALTH_ADVICE_ID}"]`);
+  if (!message) message = appendCopilotMessage({ id: BUSINESS_HEALTH_ADVICE_ID, type: 'ai', kind: 'business-health', text: BUSINESS_HEALTH_ADVICE });
+  else {
+    message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    brieflyHighlight(message);
+  }
+}
+
+async function reviewOverdueInvoice() {
+  sessionStorage.setItem(RECORD_FILTERS_KEY, JSON.stringify({ query: '', type: '', status: 'pending-payments', period: 'all' }));
+  await goTo('records');
+  const invoice = [...document.querySelectorAll('#recordList .record-card')].find(card => card.querySelector('h4')?.textContent.includes('INV-1048'));
+  invoice?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  brieflyHighlight(invoice);
+}
+
+async function createAdvicePurchaseOrder() {
+  await goTo('inventory');
+  openPurchaseOrder('SH-BLU-M');
+}
+
 function sendChat() { const input = document.getElementById('chatInput'); if (!input) return; const text = input.value.trim(); if (!text) return; addMessage(text, 'user'); input.value = ''; setTimeout(() => addMessage(getReply(text), 'ai'), 350); }
 function quickPrompt(button) { const input = document.getElementById('chatInput'); if (!input) return; input.value = button.textContent; sendChat(); }
-function addMessage(text, type) { const messages = document.getElementById('messages'); if (!messages) return; const message = document.createElement('div'); message.className = `message ${type}`; message.textContent = text; messages.appendChild(message); requestAnimationFrame(() => message.scrollIntoView({ behavior: 'smooth', block: 'nearest' })); }
+function addMessage(text, type) { appendCopilotMessage({ type, text }); }
 
 document.addEventListener('click', event => {
   const button = event.target.closest('[data-action]');
@@ -179,6 +257,9 @@ document.addEventListener('click', event => {
   else if (button.dataset.action === 'clear-pending-payments') clearPendingPayments();
   else if (button.dataset.action === 'export-inventory') openInventoryExport();
   else if (button.dataset.action === 'copilot') goTo('copilot');
+  else if (button.dataset.action === 'business-health-advice') showBusinessHealthAdvice();
+  else if (button.dataset.action === 'review-overdue-invoice') reviewOverdueInvoice();
+  else if (button.dataset.action === 'advice-create-purchase-order') createAdvicePurchaseOrder();
   else if (button.dataset.action === 'connect') openConnect();
   else if (button.dataset.action === 'sync-integrations') syncIntegrations(button);
   else if (button.dataset.action === 'review-high-priority') openHighPriorityReview(button);
