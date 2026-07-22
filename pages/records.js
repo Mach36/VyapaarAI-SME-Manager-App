@@ -2,9 +2,11 @@ window.VyapaarPages ??= {};
 window.VyapaarPages.records = async function () {
   const data = await fetchPageData('records');
   window.VyapaarUpload?.setConfig(data.uploadWorkflow);
+  window.VyapaarInvoice?.setConfig(data.createInvoiceWorkflow);
+  requestAnimationFrame(() => window.VyapaarInvoice?.restoreRecord());
   return VyapaarRenderers.records({
     title: 'Record keeping', subtitle: 'One searchable source of truth for invoices, payments, expenses and documents.',
-    actions: [{ label: 'Upload document', style: 'outline', action: 'upload-document' }, { label: 'Create invoice', style: 'brand', toast: 'New invoice draft created' }],
+    actions: [{ label: 'Upload document', style: 'outline', action: 'upload-document' }, { label: 'Create invoice', style: 'brand', action: 'create-invoice' }],
     metrics: data.metrics,
     // Keep button labels for compatibility with previously cached renderers.
     filters: { search: 'Search records...', buttons: ['All types ▾', 'All statuses ▾', 'This month ▾'] },

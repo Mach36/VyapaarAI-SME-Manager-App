@@ -171,6 +171,48 @@
       "tone": "green"
     }
   ],
+  "createInvoiceWorkflow": {
+    "invoice": {
+      "number": "INV-1060", "date": "2026-07-23", "dueDate": "2026-08-07",
+      "paymentTerms": "Net 15 days", "currency": "INR", "paymentStatus": "Unpaid",
+      "source": "Created in VyapaarAI", "purchaseOrder": "Not provided",
+      "customerNote": "Thank you for your business. Please complete payment by the due date.",
+      "internalNote": "", "terms": "Goods once sold will not be returned unless damaged. Late payments may affect future credit terms.",
+      "paymentMethod": "UPI payment link", "reminder": "3 days before due date"
+    },
+    "linkedQuotation": {
+      "number": "QUO-2093", "customer": "Royal Menswear", "source": "Website lead",
+      "leadScore": 84, "stage": "Quotation sent", "value": 94000,
+      "products": "Formal shirts, blue shirts and jeans",
+      "recommendedAction": "Create invoice and send payment link"
+    },
+    "customers": [
+      {"name":"Royal Menswear","contact":"Arjun Malhotra","phone":"+91 98765 43210","email":"accounts@royalmenswear.in","gstin":"27AABCR4582M1Z6","address":"18 Linking Road, Bandra West, Mumbai, Maharashtra 400050","placeOfSupply":"Maharashtra"},
+      {"name":"Kapoor Retail","contact":"Neha Kapoor","phone":"+91 98200 11881","email":"accounts@kapoorretail.in","gstin":"27AAECK2211A1Z4","address":"Dadar West, Mumbai, Maharashtra 400028","placeOfSupply":"Maharashtra"},
+      {"name":"Sunrise Mart","contact":"Kunal Shah","phone":"+91 98190 22442","email":"finance@sunrisemart.in","gstin":"27AAHCS3390D1Z8","address":"Thane West, Maharashtra 400601","placeOfSupply":"Maharashtra"},
+      {"name":"Mehta Stores","contact":"Riya Mehta","phone":"+91 98670 33553","email":"mehta.stores@example.in","gstin":"27AAKFM4412E1Z2","address":"Andheri East, Mumbai, Maharashtra 400069","placeOfSupply":"Maharashtra"},
+      {"name":"Ramesh Traders","contact":"Ramesh Patel","phone":"+91 98920 44664","email":"ramesh@rameshtraders.in","gstin":"27AAGFR5513G1Z5","address":"Vashi, Navi Mumbai, Maharashtra 400703","placeOfSupply":"Maharashtra"},
+      {"name":"City Bazaar","contact":"Fatima Khan","phone":"+91 98700 55775","email":"billing@citybazaar.in","gstin":"27AAEFC6614H1Z9","address":"Kurla West, Mumbai, Maharashtra 400070","placeOfSupply":"Maharashtra"}
+    ],
+    "products": [
+      {"name":"Formal White Shirt · L","sku":"SH-WHT-L","stock":118,"unitPrice":800,"gst":18},
+      {"name":"Blue Cotton Shirt · M","sku":"SH-BLU-M","stock":34,"unitPrice":700,"gst":18,"lowStockAt":4},
+      {"name":"Slim-fit Jeans · 32","sku":"JN-SLM-32","stock":64,"unitPrice":1000,"gst":18},
+      {"name":"Packaging and delivery","sku":"SERVICE-PACK","stock":null,"unitPrice":3661,"gst":18}
+    ],
+    "quotationItems": [
+      {"sku":"SH-WHT-L","quantity":50,"discount":0}, {"sku":"SH-BLU-M","quantity":30,"discount":0},
+      {"sku":"JN-SLM-32","quantity":15,"discount":0}, {"sku":"SERVICE-PACK","quantity":1,"discount":0}
+    ],
+    "paymentMethods": ["UPI payment link","Bank transfer","Cash","Cheque"],
+    "deliveryMethods": ["WhatsApp","Email","PDF","UPI payment link"],
+    "businessUpdates": [
+      {"area":"Record keeping","items":["Create sales invoice INV-1060","Add ₹94,000 to outstanding receivables","Begin payment tracking","Set due date to 7 August 2026"]},
+      {"area":"Customer and lead","items":["Link the invoice to Royal Menswear","Mark QUO-2093 as converted","Move the Royal Menswear lead to Won","Update customer lifetime value"]},
+      {"area":"Inventory","items":["Reduce Formal White Shirt · L by 50","Reduce Blue Cotton Shirt · M by 30","Reduce Slim-fit Jeans · 32 by 15","Create a low-stock alert for Blue Cotton Shirt · M"]},
+      {"area":"Tax and reminders","items":["Add ₹14,339 to output GST","Schedule a payment reminder three days before the due date","Schedule an overdue reminder one day after the due date"]}
+    ]
+  },
   "uploadWorkflow": {
     "processingStages": [
       "Identifying document type",
