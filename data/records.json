@@ -10,7 +10,8 @@
       "label": "Pending payments",
       "value": "₹2.14L",
       "badge": "8 invoices",
-      "tone": "amber"
+      "tone": "amber",
+      "action": "pending-payments"
     },
     {
       "label": "Expenses this month",

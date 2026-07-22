@@ -712,6 +712,28 @@ button:active {
   padding: 18px;
 }
 
+.metric-card-action {
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.metric-card-action:hover {
+  border-color: #b9b5ef;
+  box-shadow: 0 7px 18px rgba(23, 32, 51, 0.08);
+  transform: translateY(-1px);
+}
+
+.metric-card-action:focus-visible,
+.metric-card-action.active {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(102, 92, 201, 0.14);
+}
+
 .metric-label {
   font-size: 0.78rem;
   font-weight: 500;
@@ -762,6 +784,27 @@ td {
 }
 
 select.filter { cursor: pointer; }
+
+.filter.filter-active {
+  color: var(--brand);
+  border-color: var(--brand);
+  background: #f7f6ff;
+  font-weight: 700;
+}
+
+.record-filter-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -2px 0 12px;
+  padding: 10px 12px;
+  color: #6c4809;
+  background: #fff8e8;
+  border: 1px solid #f0d79d;
+  border-radius: 10px;
+  font-size: 12px;
+}
 
 .record-count {
   margin: -4px 0 12px;

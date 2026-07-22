@@ -1,6 +1,7 @@
 const pageIds = ['home', 'records', 'inventory', 'leads', 'copilot', 'integrations'];
 const pageContent = document.getElementById('pageContent');
 const dataCache = new Map();
+const RECORD_FILTERS_KEY = 'vyapaar-record-filters';
 
 async function getJson(path) {
   if (!dataCache.has(path)) {
@@ -19,6 +20,7 @@ async function loadPage(id) {
     const renderPage = window.VyapaarPages?.[id];
     if (!renderPage) throw new Error(`Missing page module: ${id}`);
     pageContent.innerHTML = await renderPage();
+    if (id === 'records') restoreRecordFilters();
   } catch (error) {
     pageContent.innerHTML = `<section class="page active page-error"><h1>This section could not be loaded</h1><p>The ${id} page data is missing.</p></section>`;
     console.error(error);
@@ -54,7 +56,8 @@ function filterRecords() {
   if (!search) return;
   const query = search.value.trim().toLowerCase();
   const type = document.getElementById('recordType')?.value || '';
-  const status = document.getElementById('recordStatus')?.value || '';
+  const statusSelect = document.getElementById('recordStatus');
+  const status = statusSelect?.value || '';
   const period = document.getElementById('recordPeriod')?.value || 'all';
   const cards = [...document.querySelectorAll('#recordList .record-card')];
   const dates = cards.map(card => card.dataset.date).filter(Boolean).sort();
@@ -71,9 +74,12 @@ function filterRecords() {
       cutoff.setDate(cutoff.getDate() - Number(period) + 1);
       matchesPeriod = recordDate >= cutoff && recordDate <= latestDate;
     }
+    const matchesStatus = status === 'pending-payments'
+      ? ['Pending', 'Overdue'].includes(card.dataset.status)
+      : (!status || card.dataset.status === status);
     const matches = card.dataset.search.includes(query)
       && (!type || card.dataset.type === type)
-      && (!status || card.dataset.status === status)
+      && matchesStatus
       && matchesPeriod;
     card.classList.toggle('is-hidden', !matches);
     if (matches) visibleCount += 1;
@@ -83,6 +89,42 @@ function filterRecords() {
   const count = document.getElementById('recordCount');
   if (count) count.textContent = `Showing ${visibleCount} ${countLabel}`;
   document.getElementById('recordEmpty')?.classList.toggle('is-hidden', visibleCount > 0);
+  const pendingActive = status === 'pending-payments';
+  statusSelect?.classList.toggle('filter-active', pendingActive);
+  document.getElementById('pendingPaymentsSummary')?.classList.toggle('is-hidden', !pendingActive);
+  const pendingCard = document.querySelector('[data-action="pending-payments"]');
+  pendingCard?.classList.toggle('active', pendingActive);
+  pendingCard?.setAttribute('aria-pressed', String(pendingActive));
+  sessionStorage.setItem(RECORD_FILTERS_KEY, JSON.stringify({ query: search.value, type, status, period }));
+}
+
+function restoreRecordFilters() {
+  let state = {};
+  try { state = JSON.parse(sessionStorage.getItem(RECORD_FILTERS_KEY)) || {}; } catch (_) {}
+  const search = document.getElementById('recordSearch');
+  const type = document.getElementById('recordType');
+  const status = document.getElementById('recordStatus');
+  const period = document.getElementById('recordPeriod');
+  if (search) search.value = state.query || '';
+  if (type && [...type.options].some(option => option.value === state.type)) type.value = state.type;
+  if (status && [...status.options].some(option => option.value === state.status)) status.value = state.status;
+  if (period && [...period.options].some(option => option.value === state.period)) period.value = state.period;
+  filterRecords();
+}
+
+function showPendingPayments() {
+  const status = document.getElementById('recordStatus');
+  if (!status) return;
+  status.value = 'pending-payments';
+  filterRecords();
+  requestAnimationFrame(() => document.getElementById('recordList')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+}
+
+function clearPendingPayments() {
+  const status = document.getElementById('recordStatus');
+  if (!status) return;
+  status.value = '';
+  filterRecords();
 }
 
 function getReply(text) {
@@ -96,7 +138,9 @@ function addMessage(text, type) { const messages = document.getElementById('mess
 document.addEventListener('click', event => {
   const button = event.target.closest('[data-action]');
   if (!button) return;
-  if (button.dataset.action === 'copilot') goTo('copilot');
+  if (button.dataset.action === 'pending-payments') showPendingPayments();
+  else if (button.dataset.action === 'clear-pending-payments') clearPendingPayments();
+  else if (button.dataset.action === 'copilot') goTo('copilot');
   else if (button.dataset.action === 'connect') openConnect();
   else if (button.dataset.action === 'toast') showToast(button.dataset.toast);
 });
