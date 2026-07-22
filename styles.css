@@ -761,6 +761,16 @@ td {
   min-height: 40px;
 }
 
+select.filter { cursor: pointer; }
+
+.record-count {
+  margin: -4px 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.record-empty { padding: 24px; text-align: center; }
+
 input.filter {
   min-width: 240px;
 }

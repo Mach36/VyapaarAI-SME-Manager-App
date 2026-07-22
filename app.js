@@ -52,8 +52,37 @@ function showToast(message) { const toast = document.getElementById('toast'); to
 function filterRecords() {
   const search = document.getElementById('recordSearch');
   if (!search) return;
-  const query = search.value.toLowerCase();
-  document.querySelectorAll('#recordList .record-card').forEach(card => card.classList.toggle('is-hidden', !card.dataset.search.includes(query)));
+  const query = search.value.trim().toLowerCase();
+  const type = document.getElementById('recordType')?.value || '';
+  const status = document.getElementById('recordStatus')?.value || '';
+  const period = document.getElementById('recordPeriod')?.value || 'all';
+  const cards = [...document.querySelectorAll('#recordList .record-card')];
+  const dates = cards.map(card => card.dataset.date).filter(Boolean).sort();
+  const latestDate = dates.length ? new Date(`${dates[dates.length - 1]}T00:00:00`) : null;
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const recordDate = new Date(`${card.dataset.date}T00:00:00`);
+    let matchesPeriod = true;
+    if (period === 'month' && latestDate) {
+      matchesPeriod = recordDate.getFullYear() === latestDate.getFullYear() && recordDate.getMonth() === latestDate.getMonth();
+    } else if ((period === '7' || period === '14') && latestDate) {
+      const cutoff = new Date(latestDate);
+      cutoff.setDate(cutoff.getDate() - Number(period) + 1);
+      matchesPeriod = recordDate >= cutoff && recordDate <= latestDate;
+    }
+    const matches = card.dataset.search.includes(query)
+      && (!type || card.dataset.type === type)
+      && (!status || card.dataset.status === status)
+      && matchesPeriod;
+    card.classList.toggle('is-hidden', !matches);
+    if (matches) visibleCount += 1;
+  });
+
+  const countLabel = visibleCount === 1 ? 'record' : 'records';
+  const count = document.getElementById('recordCount');
+  if (count) count.textContent = `Showing ${visibleCount} ${countLabel}`;
+  document.getElementById('recordEmpty')?.classList.toggle('is-hidden', visibleCount > 0);
 }
 
 function getReply(text) {

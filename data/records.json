@@ -1,21 +1,21 @@
 {
   "metrics":[{"label":"Sales records","value":"1,284","badge":"Synced","tone":"blue"},{"label":"Pending payments","value":"₹2.14L","badge":"8 invoices","tone":"amber"},{"label":"Expenses this month","value":"₹1.72L","badge":"Categorised","tone":"green"},{"label":"Data quality","value":"96%","badge":"4 issues resolved","tone":"green"}],
   "records":[
-    {"icon":"INV","title":"INV-1059 · Kapoor Retail","meta":"Sales invoice · 22 Jul 2026 · Created in VyapaarAI","value":"₹52,700","status":"Paid","tone":"green"},
-    {"icon":"UPI","title":"Payment · Gupta Distributors","meta":"Matched to INV-1056 · 21 Jul 2026 · Received via UPI","value":"₹31,500","status":"Reconciled","tone":"green"},
-    {"icon":"PUR","title":"Purchase · Bharat Packaging","meta":"Supplier invoice · 20 Jul 2026 · Imported from Tally","value":"₹27,850","status":"Verified","tone":"blue"},
-    {"icon":"EXP","title":"Warehouse electricity expense","meta":"Utilities · 18 Jul 2026 · Imported from bank statement","value":"₹12,480","status":"Categorised","tone":"green"},
-    {"icon":"INV","title":"INV-1056 · Sunrise Mart","meta":"Sales invoice · 17 Jul 2026 · Imported from Tally","value":"₹31,500","status":"Paid","tone":"green"},
-    {"icon":"UPI","title":"Payment · Mehta Stores","meta":"Part payment for INV-1048 · 16 Jul 2026 · Received via NEFT","value":"₹20,000","status":"Partially matched","tone":"amber"},
-    {"icon":"PUR","title":"Purchase · Metro Wholesale","meta":"Supplier invoice · 15 Jul 2026 · OCR captured from PDF","value":"₹44,300","status":"Verified","tone":"blue"},
-    {"icon":"EXP","title":"Local delivery expense","meta":"Logistics · 13 Jul 2026 · Cash voucher uploaded","value":"₹3,250","status":"Categorised","tone":"green"},
-    {"icon":"INV","title":"INV-1048 · Mehta Stores","meta":"Sales invoice · 10 Jul 2026 · Imported from Tally","value":"₹38,400","status":"Overdue","tone":"red"},
-    {"icon":"UPI","title":"Payment · Ramesh Traders","meta":"Matched to INV-1042 · 9 Jul 2026 · Received via UPI","value":"₹24,850","status":"Reconciled","tone":"green"},
-    {"icon":"PUR","title":"Purchase · Sharma Textiles","meta":"Supplier invoice · 8 Jul 2026 · OCR captured from PDF","value":"₹61,200","status":"Verified","tone":"blue"},
-    {"icon":"EXP","title":"Packaging material expense","meta":"Packaging · 6 Jul 2026 · Cash entry from WhatsApp note","value":"₹4,600","status":"Review","tone":"amber"},
-    {"icon":"INV","title":"INV-1039 · City Bazaar","meta":"Sales invoice · 5 Jul 2026 · Created in VyapaarAI","value":"₹46,250","status":"Pending","tone":"amber"},
-    {"icon":"UPI","title":"Payment · City Bazaar","meta":"Advance payment · 4 Jul 2026 · Received via IMPS","value":"₹15,000","status":"Unmatched","tone":"red"},
-    {"icon":"PUR","title":"Purchase · National Stationery","meta":"Supplier invoice · 3 Jul 2026 · Forwarded from email","value":"₹18,940","status":"Review","tone":"amber"},
-    {"icon":"EXP","title":"Office internet expense","meta":"Utilities · 2 Jul 2026 · Auto-debit from bank","value":"₹2,999","status":"Categorised","tone":"green"}
+    {"icon":"INV","date":"2026-07-22","title":"INV-1059 · Kapoor Retail","meta":"Sales invoice · 22 Jul 2026 · Created in VyapaarAI","value":"₹52,700","status":"Paid","tone":"green"},
+    {"icon":"UPI","date":"2026-07-21","title":"Payment · Gupta Distributors","meta":"Matched to INV-1056 · 21 Jul 2026 · Received via UPI","value":"₹31,500","status":"Reconciled","tone":"green"},
+    {"icon":"PUR","date":"2026-07-20","title":"Purchase · Bharat Packaging","meta":"Supplier invoice · 20 Jul 2026 · Imported from Tally","value":"₹27,850","status":"Verified","tone":"blue"},
+    {"icon":"EXP","date":"2026-07-18","title":"Warehouse electricity expense","meta":"Utilities · 18 Jul 2026 · Imported from bank statement","value":"₹12,480","status":"Categorised","tone":"green"},
+    {"icon":"INV","date":"2026-07-17","title":"INV-1056 · Sunrise Mart","meta":"Sales invoice · 17 Jul 2026 · Imported from Tally","value":"₹31,500","status":"Paid","tone":"green"},
+    {"icon":"UPI","date":"2026-07-16","title":"Payment · Mehta Stores","meta":"Part payment for INV-1048 · 16 Jul 2026 · Received via NEFT","value":"₹20,000","status":"Partially matched","tone":"amber"},
+    {"icon":"PUR","date":"2026-07-15","title":"Purchase · Metro Wholesale","meta":"Supplier invoice · 15 Jul 2026 · OCR captured from PDF","value":"₹44,300","status":"Verified","tone":"blue"},
+    {"icon":"EXP","date":"2026-07-13","title":"Local delivery expense","meta":"Logistics · 13 Jul 2026 · Cash voucher uploaded","value":"₹3,250","status":"Categorised","tone":"green"},
+    {"icon":"INV","date":"2026-07-10","title":"INV-1048 · Mehta Stores","meta":"Sales invoice · 10 Jul 2026 · Imported from Tally","value":"₹38,400","status":"Overdue","tone":"red"},
+    {"icon":"UPI","date":"2026-07-09","title":"Payment · Ramesh Traders","meta":"Matched to INV-1042 · 9 Jul 2026 · Received via UPI","value":"₹24,850","status":"Reconciled","tone":"green"},
+    {"icon":"PUR","date":"2026-07-08","title":"Purchase · Sharma Textiles","meta":"Supplier invoice · 8 Jul 2026 · OCR captured from PDF","value":"₹61,200","status":"Verified","tone":"blue"},
+    {"icon":"EXP","date":"2026-07-06","title":"Packaging material expense","meta":"Packaging · 6 Jul 2026 · Cash entry from WhatsApp note","value":"₹4,600","status":"Review","tone":"amber"},
+    {"icon":"INV","date":"2026-07-05","title":"INV-1039 · City Bazaar","meta":"Sales invoice · 5 Jul 2026 · Created in VyapaarAI","value":"₹46,250","status":"Pending","tone":"amber"},
+    {"icon":"UPI","date":"2026-07-04","title":"Payment · City Bazaar","meta":"Advance payment · 4 Jul 2026 · Received via IMPS","value":"₹15,000","status":"Unmatched","tone":"red"},
+    {"icon":"PUR","date":"2026-07-03","title":"Purchase · National Stationery","meta":"Supplier invoice · 3 Jul 2026 · Forwarded from email","value":"₹18,940","status":"Review","tone":"amber"},
+    {"icon":"EXP","date":"2026-07-02","title":"Office internet expense","meta":"Utilities · 2 Jul 2026 · Auto-debit from bank","value":"₹2,999","status":"Categorised","tone":"green"}
   ]
 }
