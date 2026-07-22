@@ -63,7 +63,7 @@
   }
 
   function copilot(data) {
-    return `<section id="copilot" class="page active">${title(data)}<div class="copilot-layout"><div class="chat-panel"><div class="chat-head"><strong>${e(data.chatTitle)}</strong>${pill(data.status)}</div><div class="messages" id="messages"><div class="message ai">${e(data.welcome)}</div></div><div class="chat-input"><input id="chatInput" placeholder="${e(data.placeholder)}" onkeydown="if(event.key==='Enter') sendChat()"><button class="btn btn-brand" onclick="sendChat()">${e(data.sendLabel)}</button></div></div><div class="side-panel"><strong class="prompt-title">${e(data.promptTitle)}</strong><p class="empty-small">${e(data.promptDescription)}</p>${data.prompts.map(prompt => `<button class="quick-prompt" onclick="quickPrompt(this)">${e(prompt)}</button>`).join('')}</div></div></section>`;
+    return `<section id="copilot" class="page active">${title(data)}<div class="copilot-layout"><div class="chat-panel"><div class="chat-head"><strong>${e(data.chatTitle)}</strong>${pill(data.status)}</div><div class="messages" id="messages"><div class="message ai">${e(data.welcome)}</div></div><div class="chat-input"><input id="chatInput" placeholder="${e(data.placeholder)}" onkeydown="if(event.key==='Enter') sendChat()"><button class="btn btn-brand" onclick="sendChat()">${e(data.sendLabel)}</button></div></div><div class="side-panel"><strong class="prompt-title">${e(data.promptTitle)}</strong><p class="empty-small">${e(data.promptDescription)}</p><div class="quick-prompt-list">${data.prompts.map(prompt => `<button class="quick-prompt" onclick="quickPrompt(this)">${e(prompt)}</button>`).join('')}</div></div></div></section>`;
   }
 
   window.VyapaarRenderers = { home, records, inventory, leads, copilot, integrations };

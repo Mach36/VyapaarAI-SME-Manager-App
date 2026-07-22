@@ -43,17 +43,25 @@ async function goTo(id, updateHistory = true) {
     if (isActive) button.setAttribute('aria-current', 'page');
     else button.removeAttribute('aria-current');
   });
-  document.getElementById('sidebar').classList.remove('open');
-  document.querySelector('.mobile-menu').setAttribute('aria-expanded', 'false');
+  closeMenu(false);
   if (updateHistory && window.location.hash !== `#${nextPage}`) history.pushState({ page: nextPage }, '', `#${nextPage}`);
   await loadPage(nextPage);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function toggleMenu() {
-  const isOpen = document.getElementById('sidebar').classList.toggle('open');
-  document.querySelector('.mobile-menu').setAttribute('aria-expanded', String(isOpen));
+function setMenuOpen(isOpen, restoreFocus = false) {
+  const sidebar = document.getElementById('sidebar');
+  const menuButton = document.querySelector('.mobile-menu');
+  const drawerMode = window.matchMedia('(max-width: 1199px)').matches;
+  const nextOpen = Boolean(isOpen && drawerMode);
+  sidebar.classList.toggle('open', nextOpen);
+  document.body.classList.toggle('nav-open', nextOpen);
+  menuButton.setAttribute('aria-expanded', String(nextOpen));
+  if (nextOpen) requestAnimationFrame(() => sidebar.querySelector('.nav button.active, .nav button')?.focus());
+  else if (restoreFocus && drawerMode) menuButton.focus();
 }
+function toggleMenu() { setMenuOpen(!document.getElementById('sidebar').classList.contains('open')); }
+function closeMenu(restoreFocus = false) { setMenuOpen(false, restoreFocus); }
 function openConnect() { document.getElementById('connectModal').classList.add('show'); document.querySelector('#connectModal .close').focus(); }
 function closeConnect() { document.getElementById('connectModal').classList.remove('show'); }
 function finishConnect() { closeConnect(); showToast('Selected apps connected. Initial sync started.'); }
@@ -267,11 +275,13 @@ document.addEventListener('click', event => {
 });
 document.getElementById('connectModal').addEventListener('click', event => { if (event.target.id === 'connectModal') closeConnect(); });
 document.getElementById('globalSearch').addEventListener('keydown', async event => { const query = event.target.value.trim(); if (event.key !== 'Enter' || !query) return; event.target.value = ''; await goTo('copilot'); const input = document.getElementById('chatInput'); if (input) { input.value = query; sendChat(); } });
-document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeConnect(); document.getElementById('sidebar').classList.remove('open'); document.querySelector('.mobile-menu').setAttribute('aria-expanded', 'false'); } });
+document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeConnect(); closeMenu(true); } });
 window.addEventListener('popstate', () => goTo(window.location.hash.slice(1), false));
+window.addEventListener('resize', () => { if (window.innerWidth >= 1200) closeMenu(false); });
 
 async function start() {
   document.querySelectorAll('#nav button').forEach(button => button.addEventListener('click', () => goTo(button.dataset.page)));
+  document.getElementById('navScrim').addEventListener('click', () => closeMenu(true));
   document.querySelectorAll('.connect-option').forEach(option => option.addEventListener('click', () => option.classList.toggle('selected')));
   await goTo(window.location.hash.slice(1), false);
 }

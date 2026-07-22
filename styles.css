@@ -1379,3 +1379,813 @@ input.filter {
     .completed-actions { grid-template-columns: 1fr; }
     .workflow-actions { position: sticky; bottom: -24px; padding: 13px 0 0; background: linear-gradient(transparent, white 18%); }
   }
+
+/* Responsive layout system */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+.app,
+.main,
+.page-content,
+.page,
+.card,
+.hero > *,
+.section-head > *,
+.page-title > *,
+.record-meta,
+.record-meta > div:last-child,
+.integration-card,
+.chat-panel,
+.side-panel,
+.modal-card,
+.modal-card > *,
+.review-grid > *,
+.invoice-builder-grid > *,
+.invoice-send-grid > * {
+  min-width: 0;
+}
+
+.app {
+  grid-template-columns: 244px minmax(0, 1fr);
+}
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 244px;
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  z-index: 30;
+}
+
+.main {
+  grid-column: 2;
+}
+
+.nav-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: block;
+  visibility: hidden;
+  border: 0;
+  padding: 0;
+  background: rgba(14, 19, 38, .52);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+
+.table-wrap,
+.inventory-table-wrap,
+.invoice-items-scroll,
+.invoice-preview-table,
+.line-items-wrap,
+.po-table-scroll,
+.lead-board {
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-inline: contain;
+}
+
+.table-wrap,
+.invoice-items-scroll,
+.invoice-preview-table,
+.line-items-wrap,
+.po-table-scroll {
+  overflow-x: auto;
+}
+
+.inventory-table-wrap {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.card,
+.record-card,
+.integration-card,
+.lead-card,
+.insight,
+.metric-label,
+.metric-value,
+.page-title,
+.section-head {
+  overflow-wrap: anywhere;
+}
+
+.btn,
+.quick-prompt,
+.connect-option {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+input,
+select,
+textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.integration-logo {
+  align-self: center;
+}
+
+.integration-card > .btn {
+  width: 100%;
+}
+
+.quick-prompt-list {
+  display: grid;
+  gap: 8px;
+}
+
+.quick-prompt {
+  min-height: 44px;
+  margin: 0;
+}
+
+.modal-card {
+  overscroll-behavior: contain;
+}
+
+.modal-head {
+  z-index: 2;
+}
+
+@media (max-width: 1199px) {
+  .app {
+    display: block;
+  }
+
+  .main {
+    grid-column: auto;
+    max-width: none;
+    padding: 22px 24px 42px;
+  }
+
+  .sidebar {
+    left: 0;
+    width: min(300px, 86vw);
+    transform: translateX(-105%);
+    transition: transform .24s ease;
+    box-shadow: 18px 0 45px rgba(10, 14, 28, .24);
+    z-index: 60;
+  }
+
+  .sidebar.open {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  body.nav-open .nav-scrim {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+
+  .topbar,
+  .topbar.copilot-active {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topbar-search {
+    min-width: 0;
+  }
+
+  .topbar.copilot-active .mobile-menu {
+    display: inline-flex;
+  }
+
+  .grid-4,
+  .integration-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .copilot-layout {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .side-panel {
+    order: -1;
+  }
+
+  .page-title {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .page-actions {
+    flex-wrap: wrap;
+  }
+
+  .quick-prompt-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .quick-prompt {
+    flex: 1 1 220px;
+  }
+
+  .lead-board {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 38vw);
+    grid-template-columns: none;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 2px 2px 10px;
+  }
+
+  .lead-column {
+    min-width: 260px;
+    scroll-snap-align: start;
+  }
+
+  .modal {
+    padding: 16px;
+  }
+
+  .modal-card,
+  .lead-review-shell,
+  .inventory-export-card {
+    width: min(920px, calc(100vw - 32px));
+    max-height: calc(100dvh - 32px);
+  }
+
+  .review-grid,
+  .invoice-send-grid,
+  .invoice-builder-grid,
+  .invoice-suggestion {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .invoice-preview {
+    position: static;
+  }
+
+  .invoice-source-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .po-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .po-notes {
+    grid-column: 1 / -1;
+  }
+
+  .po-success-grid,
+  .invoice-delivery-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 13px;
+  }
+
+  .main {
+    padding: 14px 14px 30px;
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    min-height: 44px;
+  }
+
+  .topbar {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .search {
+    min-height: 44px;
+    padding-inline: 10px;
+  }
+
+  .search input {
+    padding-block: 10px;
+  }
+
+  .profile {
+    flex: 0 0 auto;
+    padding: 0;
+  }
+
+  .profile span {
+    display: none;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .page-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .page-title h1 {
+    font-size: clamp(1.45rem, 7vw, 1.75rem);
+    line-height: 1.18;
+  }
+
+  .page-actions {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .page-actions .btn {
+    flex: 1 1 145px;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    min-height: 0;
+    padding: 22px 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+    line-height: 1.18;
+  }
+
+  .hero-insight {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .section-head {
+    align-items: flex-start;
+  }
+
+  .grid-4,
+  .grid-3,
+  .grid-2,
+  .integration-grid,
+  .invoice-source-grid,
+  .invoice-fields-grid,
+  .invoice-delivery-options,
+  .invoice-updates-grid,
+  .invoice-create-success .completed-actions,
+  .invoice-delivery-summary,
+  .po-fields,
+  .po-review ul,
+  .po-success-grid,
+  .review-facts,
+  .extracted-form,
+  .updates-grid,
+  .completed-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .po-notes {
+    grid-column: auto;
+  }
+
+  .record-card {
+    display: grid;
+    align-items: start;
+    gap: 12px;
+  }
+
+  .record-meta {
+    align-items: flex-start;
+  }
+
+  .record-value {
+    text-align: left;
+  }
+
+  .toolbar > * {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  .record-filter-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .integration-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .integration-logo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .sync-metric-row,
+  .integration-sync-status {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .btn.sync-now-button {
+    min-height: 44px;
+  }
+
+  .lead-board {
+    grid-auto-columns: minmax(270px, 84vw);
+  }
+
+  .lead-column {
+    width: 84vw;
+    min-width: 270px;
+    max-width: 310px;
+    height: min(430px, 58dvh);
+  }
+
+  .lead-compact {
+    min-height: 60px;
+  }
+
+  .copilot-layout {
+    gap: 10px;
+  }
+
+  .side-panel {
+    padding: 12px;
+  }
+
+  .quick-prompt {
+    flex-basis: 100%;
+  }
+
+  .chat-panel {
+    height: min(620px, calc(100dvh - 150px));
+    min-height: 500px;
+  }
+
+  .chat-head,
+  .messages {
+    padding: 13px;
+  }
+
+  .message,
+  .message.advice-message {
+    width: auto;
+    max-width: 94%;
+  }
+
+  .advice-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .advice-actions button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .chat-input {
+    position: relative;
+    padding: 10px;
+  }
+
+  .chat-input input,
+  .chat-input .btn {
+    min-height: 44px;
+  }
+
+  .modal {
+    padding: 8px;
+  }
+
+  .modal-card,
+  .lead-review-shell,
+  .inventory-export-card,
+  .purchase-order-card,
+  .upload-modal-card,
+  .invoice-create-card {
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 16px);
+    border-radius: 16px;
+  }
+
+  .modal-card:not(.purchase-order-card):not(.upload-modal-card):not(.invoice-create-card) {
+    padding: 18px 16px;
+  }
+
+  .modal-head {
+    position: sticky;
+    top: 0;
+    background: white;
+  }
+
+  .modal-head h2,
+  .upload-modal-head h2,
+  .invoice-create-head h2,
+  .purchase-order-head h2 {
+    font-size: 1.2rem;
+    line-height: 1.25;
+  }
+
+  .close {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .modal-footer,
+  .workflow-actions,
+  .review-actions {
+    flex-wrap: wrap;
+  }
+
+  .modal-footer .btn,
+  .workflow-actions .btn,
+  .review-actions .btn {
+    min-height: 44px;
+  }
+
+  .connect-list,
+  .export-choice-row,
+  .export-options,
+  .export-field-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .connect-option,
+  .export-choice,
+  .export-options label,
+  .export-field-grid label,
+  .invoice-delivery-options label {
+    min-height: 44px;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+  }
+
+  .purchase-order-head,
+  .purchase-order-content,
+  .invoice-create-head,
+  .invoice-create-content,
+  .upload-modal-head,
+  .upload-step-content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .po-section,
+  .invoice-form-section,
+  .invoice-items-editor,
+  .invoice-send-panel > section {
+    padding: 14px;
+  }
+
+  .po-section-head,
+  .invoice-section-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .po-add {
+    min-width: 0;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .invoice-paper {
+    min-width: 0;
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .invoice-brand,
+  .invoice-to {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .invoice-preview-number {
+    text-align: left;
+  }
+
+  .invoice-preview-table .invoice-table,
+  .invoice-preview .invoice-table {
+    min-width: 470px;
+  }
+
+  .invoice-preview {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .selected-file {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .selected-file-main {
+    width: 100%;
+  }
+
+  .processing-wrap,
+  .invoice-processing,
+  .success-state {
+    min-height: 360px;
+  }
+
+  .processing-meta {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .review-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .review-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .review-lead-head {
+    flex-wrap: wrap;
+  }
+
+  .po-footer {
+    bottom: -24px;
+    margin-inline: -14px;
+    padding-inline: 14px;
+  }
+
+  .inventory-reorder,
+  .po-remove,
+  .invoice-remove {
+    min-height: 44px;
+  }
+
+  .toast {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    text-align: center;
+  }
+
+  small,
+  .empty-small,
+  .record-card p,
+  .lead-card p,
+  .integration-card p,
+  .integration-last-sync,
+  .invoice-stock-status,
+  .invoice-table td small {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 479px) {
+  .main {
+    padding-inline: 10px;
+  }
+
+  .topbar-search {
+    padding-inline: 8px;
+  }
+
+  .topbar-search > span {
+    display: none;
+  }
+
+  .topbar-search input {
+    font-size: 12px;
+  }
+
+  .card,
+  .record-card,
+  .integration-card {
+    padding: 14px;
+  }
+
+  .section-head {
+    flex-wrap: wrap;
+  }
+
+  .hero-actions,
+  .page-actions,
+  .modal-footer,
+  .workflow-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .hero-actions .btn,
+  .page-actions .btn,
+  .modal-footer .btn,
+  .workflow-actions .btn {
+    width: 100%;
+  }
+
+  .chat-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .chat-input {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .chat-panel {
+    min-height: 540px;
+  }
+
+  .message,
+  .message.advice-message {
+    max-width: 97%;
+  }
+
+  .review-actions,
+  .review-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .completion-actions {
+    display: grid;
+  }
+
+  .review-progress-head,
+  .sync-metric-row,
+  .integration-sync-status {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .invoice-source-card,
+  .drop-zone {
+    min-height: 0;
+  }
+
+  .invoice-totals,
+  .po-totals,
+  .invoice-total {
+    width: 100%;
+  }
+}
