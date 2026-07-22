@@ -136,7 +136,12 @@ function addMessage(text, type) {
   message.className = `message ${type}`;
   message.textContent = text;
   messages.appendChild(message);
-  messages.scrollTop = messages.scrollHeight;
+
+  // Wait until the new message has been laid out, then reveal it inside the
+  // chat panel. `nearest` avoids moving the rest of the page.
+  requestAnimationFrame(() => {
+    message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
 }
 
 document.getElementById('connectModal').addEventListener('click', event => {

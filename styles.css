@@ -416,9 +416,15 @@
   .chat-panel, .side-panel {
     background: white; border: 1px solid var(--line); border-radius: 16px;
   }
-  .chat-panel { display: flex; flex-direction: column; overflow: hidden; }
+  .chat-panel {
+    display: flex;
+    flex-direction: column;
+    height: clamp(440px, calc(100dvh - 180px), 620px);
+    min-height: 0;
+    overflow: hidden;
+  }
   .chat-head { padding: 15px 17px; border-bottom: 1px solid var(--line); display:flex; justify-content:space-between; }
-  .messages { padding: 18px; flex: 1; overflow: auto; display: grid; align-content: start; gap: 12px; }
+  .messages { padding: 18px; flex: 1; min-height: 0; overflow-y: auto; display: grid; align-content: start; gap: 12px; }
   .message { max-width: 78%; padding: 11px 13px; border-radius: 13px; font-size: 13px; line-height: 1.5; }
   .message.ai { background: #f3f3fd; color: #31306f; }
   .message.user { background: #5b57e8; color: white; justify-self: end; }
