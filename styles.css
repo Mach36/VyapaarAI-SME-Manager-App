@@ -308,6 +308,15 @@
     border: 1px solid var(--line);
     border-radius: 16px;
   }
+  .inventory-table-wrap {
+    max-height: 300px;
+    overflow: auto;
+  }
+  .inventory-table-wrap thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
   table { width: 100%; border-collapse: collapse; min-width: 760px; }
   th, td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--line); font-size: 12px; }
   th { color: var(--muted); font-weight: 600; background: #fafbfc; }
